@@ -1,0 +1,29 @@
+@import "../../../styles";
+
+
+.title {
+  padding:1rem;
+
+  &__blue4{
+    background-color: $blue-bg-4;
+    color: $blue-text-4;
+
+  }
+  &__purple4{
+    background-color: $purple-bg-4;
+    color: $purple-text-4;
+
+  }
+  &__green4{
+    background-color: $green-bg-4;
+    color: $green-text-4;
+  }
+  &__yellow4{
+    background-color: $yellow-bg-4;
+    color: $yellow-text-4;
+  }
+  &__cyan4{
+    background-color: $cyan-bg-4;
+    color: $cyan-text-4;
+  }
+}

@@ -1,0 +1,16 @@
+<content-page
+title="{{title}}"
+[colorscheme]="ColorScheme.green"
+image="./assets/images/saxjax_soulfunction.jpeg"
+altImageText="saxjax playing saxophone"
+>
+<div class="text-and-image">
+  <div class="content">
+<ng-container *ngFor="let link of links ">
+<p>
+  <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+</p>
+</ng-container>
+</div>
+</div>
+</content-page>

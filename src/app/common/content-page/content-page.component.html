@@ -1,0 +1,10 @@
+<content-title [colorscheme]="colorscheme" title="{{title}}"/>
+<!-- <h3 class="title title__{{colorscheme}}4">{{title}}</h3> -->
+<div class="text-and-image">
+  <div class="content">
+  <ng-content></ng-content>
+  </div>
+  @if(image){
+  <img class="image" src="{{image}}" alt="{{altImgText}}" width="{{imageWidth}}">
+  }
+</div>

@@ -1,5 +1,7 @@
+@import "../../styles.scss";
+
 :host{
-  background: brown;
+  background-color: $background;
   display: flex;
   align-items: center;
 }
