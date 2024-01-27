@@ -1,7 +1,13 @@
-<h3 class="title">products-page works!</h3>
-<div class="text-and-image">
-  <div class="content">
-<img class="image" src="./assets/images/saxjax_coffee.jpeg" alt="saxjax drinking coffee" width="20%">
-
-</div>
-</div>
+<content-page
+[colorscheme]="ColorScheme.purple"
+title="products-page"
+image="./assets/images/saxjax_coffee.jpeg"
+altimagetext="saxjax drinking coffee">
+<ng-container>
+  @for(link of links; track link){
+  <p>
+    <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+  </p>
+}
+  </ng-container>
+</content-page>

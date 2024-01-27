@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { ContentPageComponent } from "../../common/content-page/content-page.component";
 
 @Component({
-  selector: 'programing-page',
-  standalone: true,
-  imports: [],
-  templateUrl: './programing-page.component.html',
-  styleUrl: './programing-page.component.scss'
+    selector: 'programing-page',
+    standalone: true,
+    templateUrl: './programing-page.component.html',
+    styleUrl: './programing-page.component.scss',
+    imports: [ContentPageComponent]
 })
 export class ProgramingPageComponent {
 
