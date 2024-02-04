@@ -1,10 +1,15 @@
 <content-title [colorscheme]="colorscheme" title="{{title}}"/>
 <!-- <h3 class="title title__{{colorscheme}}4">{{title}}</h3> -->
 <div class="text-and-image">
-  <div class="content">
-  <ng-content></ng-content>
+  <div class="content" [ngClass]="{'full-width': images.length === 0}">
+    <ng-content></ng-content>
   </div>
-  @if(image){
-  <img class="image" src="{{image}}" alt="{{altImgText}}" width="{{imageWidth}}">
+  @if(images.length > 0){
+    <div class="images">
+      @for(image of images; track image){
+        <img class="image" src="{{image}}" alt="{{altImgText}}" width="{{imageWidth}}">
+      }
+    </div>
+
   }
 </div>

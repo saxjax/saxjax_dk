@@ -18,7 +18,7 @@ export class ProductsPageComponent {
   links = [
   "[Notio](https://musedlab.org/notio)::En web app som kan anvendes til at undervise og udforske skalaer i det musikalske univers::",
   "[Den Lille Tabel](https://apps.apple.com/dk/app/saxjax-den-lille-tabel/id1602361785)::En lille app til at øve tabelerne::",
-  "[SAXJAX TUNER](https://itunes.apple.com/dk/app/saxjax-tuner/id1257573809?l=da&mt=8)::INTELLIGENT • TUNER • FOR • WINDINSTRUMENTS::",
+  "[SAXJAX TUNER](https://apps.apple.com/dk/app/saxjax-tuner-lite/id1308528794)::INTELLIGENT • TUNER • FOR • WINDINSTRUMENTS::",
   "[Colorfull todolist](https://apps.apple.com/us/app/saxjax-colorfull-todolist/id1643164134)::En af de mange todo list apps::"
 ]
 

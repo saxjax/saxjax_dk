@@ -1,7 +1,9 @@
 @import "../../styles.scss";
 
 :host{
-  background-color: $background;
+  background-color: #ecf0f1;
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  z-index: inherit;
+  min-height: fit-content;
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContentPageComponent } from "../../common/content-page/content-page.component";
+import { ColorScheme } from '../../model/ColorScheme';
 
 @Component({
     selector: 'programing-page',
@@ -9,5 +10,5 @@ import { ContentPageComponent } from "../../common/content-page/content-page.com
     imports: [ContentPageComponent]
 })
 export class ProgramingPageComponent {
-
+readonly ColorScheme =  ColorScheme
 }

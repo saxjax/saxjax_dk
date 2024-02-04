@@ -13,7 +13,7 @@ import { ColorScheme } from '../../model/ColorScheme';
     imports: [NgFor, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, ContentPageComponent]
 })
 export class MusicPageComponent {
-  @Input() title = "Mine orkestre:"
+  @Input() title = "Orkestre som jeg har medvirket i:"
   @Input() bodyText?:string
   readonly ColorScheme = ColorScheme;
 

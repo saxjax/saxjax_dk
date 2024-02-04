@@ -1,24 +1,13 @@
 @import "../styles.scss";
 
-:host {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  background-color: darken($background,20%);
-}
+// :host {
+//   display: flex;
+//   justify-content: space-evenly;
+//   flex-direction: row;
+//   background-color: darken($background,20%);
+// }
 
 main {
-  z-index: 0;
-  width: 80%;
-  min-height: 90%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 1rem;
-  box-sizing: inherit;
-  position: relative;
-
 
   top-menu {
     height: 30vh;
@@ -30,7 +19,7 @@ main {
     height:55vh;
   }
 
-  page-footer {
-    height: 10vh;
-  }
+page-footer {
+  margin-top:1rem;
+}
 }
