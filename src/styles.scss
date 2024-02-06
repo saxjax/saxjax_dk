@@ -21,8 +21,11 @@ $info: #3498db;          // Blue (same as primary, can be changed)
 // }
 
 //This universal selector sets the box-sizing to border-box, which defines width and height including padding and border.
-*{
-  box-sizing: border-box;
+*,
+*::after,
+*::before{
+  //inherit is slightly better than setting border-box here
+  box-sizing: inherit;
 }
 html{
   //This defines the rem size so that all px sizes can be expressed in rem by dividing by 10 62.5 = 10/16
@@ -38,6 +41,8 @@ body{
   width:100%;
   margin:0;
   padding: 0;
+  box-sizing: border-box;
+
 }
 app-root{
   display: flex;

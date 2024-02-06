@@ -4,13 +4,32 @@ title="{{title}}"
 [images]="['./assets/images/saxjax_soulfunction.jpeg','./assets/images/bowie_project.jpeg','./assets/images/ramashang.jpeg','./assets/images/saxjax_ontour_hi.jpeg']"
 altImageText="saxjax playing saxophone"
 >
-<div class="text-and-image">
-  <div class="content">
-<ng-container *ngFor="let link of links ">
-<p>
-  <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
-</p>
-</ng-container>
-</div>
-</div>
+  <div class="text-and-image">
+    <div class="content">
+      @for(link of links; track link){
+        <p>
+          <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+        </p>
+      }
+    </div>
+  </div>
+
+  <h3>Her er lidt sjov fra mit musiker virke</h3>
+  @for(iframeUrl of urls; track iframeUrl){
+    @defer (on viewport) {
+      <iframe
+        width="100%"
+        height="100%"
+        [src]="iframeUrl |trust"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    }
+    @placeholder {
+      <p>{{iframeUrl}}</p>
+    }
+    @error {}
+  }
 </content-page>
