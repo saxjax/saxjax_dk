@@ -1,8 +1,9 @@
 :host{
-  width:100%;
-  background-color:cyan;
-  display: flex;
+  width: 100%;
   resize: both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .scaling-svg-container {
@@ -20,6 +21,11 @@
   width: 100%;
   left: 0;
   top: 0;
+ }
+
+ .buttons{
+  display:flex;
+  flex-direction: row;
  }
 
 #graphCanvas{

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Point } from './model/point';
+import { Point } from '../app/model/point';
 
 @Pipe({
   name: 'scaleTo100',
