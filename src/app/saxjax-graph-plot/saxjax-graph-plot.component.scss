@@ -1,0 +1,36 @@
+:host{
+  width:100%;
+  background-color:cyan;
+  display: flex;
+  resize: both;
+}
+
+.scaling-svg-container {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 100%;
+  display: contents;
+  /* override this inline for aspect ratio other than square */
+ }
+ .scaling-svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+ }
+
+#graphCanvas{
+background-color: green;
+width: 100%;
+
+  // max-width: 100%; /* Ensure the graph doesn't exceed its container width */
+  // height: auto;    /* Allow the graph to adjust its height proportionally */
+
+  /* Optional: Add additional styling for borders or margins */
+  border: 3px solid #ccc;
+  margin: 10px;
+
+}

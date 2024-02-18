@@ -1,5 +1,6 @@
 @import "../../../styles";
 
+
 .title {
   background-color: $yellow-bg-4;
   color: $yellow-text-4;
@@ -7,6 +8,8 @@
 }
 .text-and-image {
 display: flex;
+padding: 0;
+
 .content{
   padding: 2rem;
 }
