@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SaxjaxGraphPlotComponent } from '../../../saxjax-graph-plot/saxjax-graph-plot.component';
+import { convexHull } from '../../../../pipes/algorithms/convexHull';
 
 @Component({
   selector: 'convex-hull',
@@ -9,6 +10,7 @@ import { SaxjaxGraphPlotComponent } from '../../../saxjax-graph-plot/saxjax-grap
   styleUrl: './convex-hull.component.scss'
 })
 export class ConvexHullComponent {
+  convexHullAlgorithm = convexHull;
   points = [
     {x:10,y:10},
     {x:20,y:20},

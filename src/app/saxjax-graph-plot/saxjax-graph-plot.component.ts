@@ -12,11 +12,10 @@ import { PathPipe } from "../../pipes/path.pipe";
     imports: [ScaleTo100Pipe, PathPipe]
 })
 export class SaxjaxGraphPlotComponent implements OnInit {
-[x: string]: any;
-
 @Input() points:Point[] = [];
 @Input() title:string = "no name";
-edges:Point[] = [];
+@Input() algorithm!: (points: Point[]) => Point[];
+edges:Point[] = []
 maxPoint: Point = {x: 100, y: 100};
 minPoint:Point = {x: 0, y: 0};
 
@@ -33,6 +32,7 @@ ngOnInit(): void {
 }
 
 generateNewPoints(count:number){
+  this.edges = [];
   this.points = new Array(count);
   console.log("New points:")
   for(let n = 0;n < count; n++ ){
@@ -43,7 +43,7 @@ generateNewPoints(count:number){
 
 calculate(){
   this.edges = []
-   this.edges = this.points.filter(point =>{return point})
+  this.edges = this.algorithm(this.points)
 }
 
 }

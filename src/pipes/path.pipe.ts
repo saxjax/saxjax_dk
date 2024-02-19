@@ -18,6 +18,7 @@ export class PathPipe implements PipeTransform {
       path = "M "+ scalePipe.transform(firstPoint.x,maxPoint.x)+" "+ scalePipe.transform(firstPoint.y,maxPoint.y)
       points.shift()
       points.forEach(point => path+= " L" + scalePipe.transform(point.x,maxPoint.x) + " " + scalePipe.transform(point.y,maxPoint.y))
+      path += " L" + scalePipe.transform(firstPoint.x,maxPoint.x) + " " + scalePipe.transform(firstPoint.y,maxPoint.y)
     }
     console.log(path)
     return path;
