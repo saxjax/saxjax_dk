@@ -5,11 +5,10 @@ import {TopMenuComponent} from "./top-menu/top-menu.component";
 import {PageFooterComponent} from "./page-footer/page-footer.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, TopMenuComponent, PageFooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [CommonModule, RouterOutlet, TopMenuComponent, PageFooterComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'saxjax.dk';

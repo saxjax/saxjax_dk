@@ -3,11 +3,10 @@ import { Component, inject, Input } from '@angular/core';
 import { ColorScheme } from '../../model/ColorScheme';
 
 @Component({
-  selector: 'jobs-page',
-  standalone: true,
-  imports: [ContentPageComponent],
-  templateUrl: './jobs-page.component.html',
-  styleUrl: './jobs-page.component.scss'
+    selector: 'jobs-page',
+    imports: [ContentPageComponent],
+    templateUrl: './jobs-page.component.html',
+    styleUrl: './jobs-page.component.scss'
 })
 export class JobsPageComponent {
   @Input() title = "CV"

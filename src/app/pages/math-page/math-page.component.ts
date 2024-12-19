@@ -8,11 +8,10 @@ import { ColorScheme } from '../../model/ColorScheme';
 import { TrustPipe } from '../../../pipes/trust.pipe';
 
 @Component({
-  selector: 'math-page',
-  standalone: true,
-  imports: [NgFor, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent],
-  templateUrl: './math-page.component.html',
-  styleUrl: './math-page.component.scss'
+    selector: 'math-page',
+    imports: [NgFor, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent],
+    templateUrl: './math-page.component.html',
+    styleUrl: './math-page.component.scss'
 })
 export class MathPageComponent {
   @Input() title = "Matematiske regler og begreber"

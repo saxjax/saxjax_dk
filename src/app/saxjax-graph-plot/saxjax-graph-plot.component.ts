@@ -6,7 +6,6 @@ import { PathPipe } from "../../pipes/path.pipe";
 
 @Component({
     selector: 'saxjax-graph-plot',
-    standalone: true,
     templateUrl: './saxjax-graph-plot.component.html',
     styleUrl: './saxjax-graph-plot.component.scss',
     imports: [ScaleTo100Pipe, PathPipe]

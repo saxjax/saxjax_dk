@@ -8,7 +8,6 @@ import { ColorScheme } from '../../model/ColorScheme';
 import { TrustPipe } from '../../../pipes/trust.pipe';
 @Component({
     selector: 'music-page',
-    standalone: true,
     templateUrl: './music-page.component.html',
     styleUrl: './music-page.component.scss',
     imports: [NgFor, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent]

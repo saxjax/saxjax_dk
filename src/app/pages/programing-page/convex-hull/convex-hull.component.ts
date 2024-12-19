@@ -3,11 +3,10 @@ import { SaxjaxGraphPlotComponent } from '../../../saxjax-graph-plot/saxjax-grap
 import { convexHull } from '../../../../pipes/algorithms/convexHull';
 
 @Component({
-  selector: 'convex-hull',
-  standalone: true,
-  imports: [SaxjaxGraphPlotComponent],
-  templateUrl: './convex-hull.component.html',
-  styleUrl: './convex-hull.component.scss'
+    selector: 'convex-hull',
+    imports: [SaxjaxGraphPlotComponent],
+    templateUrl: './convex-hull.component.html',
+    styleUrl: './convex-hull.component.scss'
 })
 export class ConvexHullComponent {
   convexHullAlgorithm = convexHull;

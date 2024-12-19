@@ -5,16 +5,15 @@ import {MailFieldComponent} from "./mail-field/mail-field.component";
 import {AddressFieldComponent} from "./address-field/address-field.component";
 
 @Component({
-  selector: 'page-footer',
-  standalone: true,
-  imports: [
-    TlfFieldComponent,
-    NameFieldComponent,
-    MailFieldComponent,
-    AddressFieldComponent
-  ],
-  templateUrl: './page-footer.component.html',
-  styleUrl: './page-footer.component.scss'
+    selector: 'page-footer',
+    imports: [
+        TlfFieldComponent,
+        NameFieldComponent,
+        MailFieldComponent,
+        AddressFieldComponent
+    ],
+    templateUrl: './page-footer.component.html',
+    styleUrl: './page-footer.component.scss'
 })
 export class PageFooterComponent {
 

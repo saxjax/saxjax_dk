@@ -6,10 +6,9 @@ import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'content-page',
-    standalone: true,
     templateUrl: './content-page.component.html',
     styleUrl: './content-page.component.scss',
-    imports: [ContentTitleComponent,NgClass]
+    imports: [ContentTitleComponent, NgClass]
 })
 export class ContentPageComponent implements OnInit {
   @Input() colorscheme:ColorScheme = ColorScheme.blue;

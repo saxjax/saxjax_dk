@@ -8,7 +8,6 @@ import { TrustPipe } from '../../../pipes/trust.pipe';
 
 @Component({
     selector: 'products-page',
-    standalone: true,
     templateUrl: './products-page.component.html',
     styleUrl: './products-page.component.scss',
     imports: [ContentPageComponent, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe]

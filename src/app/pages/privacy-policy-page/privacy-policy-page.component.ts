@@ -4,7 +4,6 @@ import { ContentPageComponent } from "../../common/content-page/content-page.com
 
 @Component({
     selector: 'privacy-policy-page',
-    standalone: true,
     templateUrl: './privacy-policy-page.component.html',
     styleUrl: './privacy-policy-page.component.scss',
     imports: [ContentPageComponent]
