@@ -1,6 +1,7 @@
+<h3>{{title}}</h3>
 <div class="buttons">
-  <h3>{{title}}</h3>
   <button (click)="calculate()">calculate</button>
+  <button (click)="generateNewPoints(20)">new</button>
 </div>
 <div class="scaling-svg-container">
 <svg id="graphCanvas" viewBox="0 0 100 100" >
@@ -12,6 +13,4 @@
     }
   </svg>
 </div>
-<div class="buttons">
-<button (click)="generateNewPoints(20)">new</button>
-</div>
+
