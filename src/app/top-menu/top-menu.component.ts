@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 const hidden = { transform: 'translateX(-120%)' }
-const active = { transform: 'translateX(0%)' }
-const dorment = { transform: 'translateX(-10%)' }
+const active = { transform: 'translateX(0%) translateY(0%)' }
+const dorment = { transform: 'translateY(-10%)' }
 const timingIn = '0.3s ease-in'
 const timingToActive = '0.3s ease-in'
 const timingToDorment = '0.1s ease-out'
