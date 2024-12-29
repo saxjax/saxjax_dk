@@ -32,12 +32,6 @@ const timingToDorment = '0.5s ease-out'
       transition('closed => open', [animate(timingToActive)]),
       transition('open => closed', [animate(timingToDorment)]),
     ]),
-  //     trigger('pageSelected', [
-  //       state('pageSelected', style(pageSelected)),
-  //       state('noPageSelected', style(noPageSelected)),
-  //       transition('pageSelected => noPageSelected', [animate(timingIn)])
-  // ])
-
   ],
 })
 export class TopMenuComponent {
