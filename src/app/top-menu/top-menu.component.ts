@@ -2,6 +2,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
+const hidden = { transform: 'translateX(-120%)' }
+const active = { transform: 'translateX(0%)' }
+const dorment = { transform: 'translateX(-10%)' }
+const timingIn = '0.3s ease-in'
+const timingToActive = '0.3s ease-in'
+const timingToDorment = '0.1s ease-out'
 
 @Component({
     selector: 'top-menu',
@@ -13,17 +19,15 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   styleUrl: './top-menu.component.scss',
   animations: [
     trigger("showMenu", [
-      transition(':enter', [style({ transform: 'translateX(-120%)' }),
-        animate('0.3s ease-in', style({ transform: 'translateX(0%)'}))
+      transition(':enter', [style(hidden),
+        animate('0.3s ease-in', style(active))
       ]),
-        state('initial',style({transform: 'translateX(-120%)'})),
-        state('closed',style({transform: 'translateY(-10%)'})),
-      state('open', style({
-        transform: 'translateY(0%)'
-      })),
-      transition('initial => open', [animate('0.3s ease-in')]),
-      transition('closed => open', [animate('0.3s ease-in')]),
-      transition('open => closed', [animate('0.1s ease-out')]),
+        state('initial',style(hidden)),
+        state('closed',style(dorment)),
+      state('open', style(active)),
+      transition('initial => open', [animate(timingIn)]),
+      transition('closed => open', [animate(timingToActive)]),
+      transition('open => closed', [animate(timingToDorment)]),
       ])
     ]
 })
