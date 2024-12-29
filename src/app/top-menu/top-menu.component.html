@@ -1,6 +1,5 @@
 <div class="main-menu" (mouseover)="menuState = 'open'">
 <div class="main-menu__image-header" (mouseover)="menuState = 'open'"></div>
-@if(menuState !== 'initial'){
 <div class="main-menu__content" [@showMenu]="menuState" (mouseover)="menuState = 'open'" (mouseout)="menuState = 'closed'" (click)="menuState = 'closed'">
 <a class="page-title" routerLink="/" routerLinkActive="active">About Jakob</a>
   <nav class="main-menu-nav">
@@ -14,5 +13,4 @@
 </ul>
   </nav>
 </div>
-}
 </div>
