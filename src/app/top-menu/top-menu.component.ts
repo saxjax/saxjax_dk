@@ -5,8 +5,6 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
 const hidden = { opacity:0.5, height:'5%',transform: 'translateY(-10%)' }
 const active = { opacity:1, height: '20%', transform: 'translateY(0%)' }
 const dorment = { opacity: 0.5, height: '10%', transform: 'translateY(-10%)' }
-// const pageSelected = { opacity: 0.5, height: '5%', 'min-height':'100px'}
-// const noPageSelected = {opacity:1, height:'100%', 'min-height':'200px'}
 
 const timingIn = '1s ease-in'
 const timingToActive = '0.3s ease-in'
