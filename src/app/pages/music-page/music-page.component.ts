@@ -10,7 +10,7 @@ import { TrustPipe } from '../../../pipes/trust.pipe';
     selector: 'music-page',
     templateUrl: './music-page.component.html',
     styleUrl: './music-page.component.scss',
-    imports: [NgFor, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent]
+    imports: [LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent]
 })
 export class MusicPageComponent {
   @Input() title = "Orkestre som jeg har medvirket i:"

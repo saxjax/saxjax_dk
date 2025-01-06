@@ -23,7 +23,7 @@ import { animate, stagger, state, style, transition, trigger, query } from '@ang
         query(':enter', [
           style({ transform: 'translateY(-120%)' }),
           animate('0.5s ease-in', style({ transform: 'translateY(0%)' }))
-        ])
+        ], {optional:true}),
       ])
     ])
   ]
