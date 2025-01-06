@@ -6,6 +6,7 @@ import { ProgramingPageComponent } from './pages/programing-page/programing-page
 import { PrivacyPolicyPageComponent } from './pages/privacy-policy-page/privacy-policy-page.component';
 import { MathPageComponent } from './pages/math-page/math-page.component';
 import { JobsPageComponent } from './pages/jobs-page/jobs-page.component';
+import { NotioPageComponent } from './pages/notio-page/notio-page.component';
 
 export const routes: Routes = [
   {path: '',component:MainPageComponent},
@@ -15,4 +16,5 @@ export const routes: Routes = [
   {path:'privacy-policy', component:PrivacyPolicyPageComponent},
   {path: 'math', component: MathPageComponent },
   {path: 'jobs', component: JobsPageComponent },
+  {path: 'notio', component: NotioPageComponent },
 ];
