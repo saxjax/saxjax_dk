@@ -27,3 +27,15 @@
 
   }
 
+  .video:not(.ng-animating):hover{
+    filter:drop-shadow(0 0 10px rgba(black,0.5));
+    outline-color: white;
+    scale: 1.01;
+}
+
+  .placeholder {
+    color: black;
+    height: 100%;
+    width: 100%;
+  }
+

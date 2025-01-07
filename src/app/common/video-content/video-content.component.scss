@@ -1,0 +1,22 @@
+
+ .video-container{
+  display: content;
+  padding: 0.5em;
+  background-color: black;
+  overflow: hidden;
+
+  &:not(.ng-animating){
+
+    &:hover{
+      filter:drop-shadow(0 0 10px rgba(black,0.5));
+      outline-color: white;
+      scale: 1.01;
+    }
+  }
+ }
+
+  .placeholder {
+    color: black;
+    height: 100%;
+    width: 100%;
+  }

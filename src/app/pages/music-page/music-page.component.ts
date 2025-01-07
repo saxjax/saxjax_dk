@@ -6,11 +6,12 @@ import { NgFor } from '@angular/common';
 import { ContentPageComponent } from "../../common/content-page/content-page.component";
 import { ColorScheme } from '../../model/ColorScheme';
 import { TrustPipe } from '../../../pipes/trust.pipe';
+import { VideoContentComponent } from "../../common/video-content/video-content.component";
 @Component({
     selector: 'music-page',
     templateUrl: './music-page.component.html',
     styleUrl: './music-page.component.scss',
-    imports: [LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent]
+    imports: [LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe, TrustPipe, ContentPageComponent, VideoContentComponent]
 })
 export class MusicPageComponent {
   @Input() title = "Orkestre som jeg har medvirket i:"
