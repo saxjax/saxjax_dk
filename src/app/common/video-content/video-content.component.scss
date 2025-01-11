@@ -10,11 +10,13 @@
     &:hover{
       filter:drop-shadow(0 0 10px rgba(black,0.5));
       outline-color: white;
-      scale: 1.01;
     }
   }
  }
 
+.popuot-button:hover{
+  scale: 1.05;
+}
   .placeholder {
     color: black;
     height: 100%;

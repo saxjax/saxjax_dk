@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import {TlfFieldComponent} from "./tlf-field/tlf-field.component";
 import {NameFieldComponent} from "./name-field/name-field.component";
 import {MailFieldComponent} from "./mail-field/mail-field.component";
@@ -17,18 +17,15 @@ import { animate, stagger, state, style, transition, trigger, query } from '@ang
   styleUrl: './page-footer.component.scss',
   animations: [
     trigger('showInfo', [
-      // state('showInfo', style({ opacity:1, height: '100%', scaleY:1 })),
-      // state('hideInfo', style({ opacity:0.1, height: '10%', scaleY:0.1 })),
       transition('* <=> *', [
         query(':enter', [
-          style({ transform: 'translateY(-120%)' }),
+          style({ transform: 'translateY(120%)' }),
           animate('0.5s ease-in', style({ transform: 'translateY(0%)' }))
-        ], {optional:true}),
+        ], { optional: true }),
       ])
     ])
   ]
 })
 export class PageFooterComponent {
-  showInfoState: 'showInfo'|'hideInfo' = 'hideInfo'
-
+  showInfoState = input<'showInfo'|'hideInfo'>('hideInfo')
 }

@@ -6,24 +6,8 @@ altimagetext="saxjax drinking coffee">
 <ng-container>
   @for(link of links; track link){
   <p>
-    <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+    <a href="{{link | linkFromParenthesis}}" target="_blank">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
   </p>
-  @defer (on viewport) {
-    <a href="{{link | linkFromParenthesis}}">link using pipes:{{link | linkFromParenthesis | trust}}</a>
-    <!-- <iframe
-      width="100%"
-      height="100%"
-      [src]="link | linkFromParenthesis | trust"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe> -->
-  }
-  @placeholder {
-    <p>{{link | linkFromParenthesis}}</p>
-  }
-  @error {}
 }
   </ng-container>
 </content-page>

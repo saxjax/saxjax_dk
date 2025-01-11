@@ -6,6 +6,6 @@
    <router-outlet />
    </div>
   </div>
-  <page-footer></page-footer>
+  <page-footer [showInfoState]="showFooter" (mouseover)="showFooter = 'showInfo'" (mouseleave)="showFooter = 'hideInfo'"></page-footer>
 </main>
 

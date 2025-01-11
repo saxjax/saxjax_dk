@@ -16,10 +16,11 @@ export class ProductsPageComponent {
   readonly ColorScheme = ColorScheme;
 
   links = [
-        "[SAXJAX TUNER](https://apps.apple.com/dk/app/saxjax-tuner-lite/id1308528794)::INTELLIGENT • TUNER • FOR • WINDINSTRUMENTS::",
-        "[Notio](https://musedlab.org/notio)::En web app som kan anvendes til at undervise og udforske skalaer i det musikalske univers::",
+        "[Saxjax tuner](https://apps.apple.com/dk/app/saxjax-tuner-lite/id1308528794)::INTELLIGENT • TUNER • FOR • WINDINSTRUMENTS::",
         "[Den Lille Tabel](https://apps.apple.com/dk/app/saxjax-den-lille-tabel/id1602361785)::En lille app til at øve tabelerne::",
         "[Colorfull todolist](https://apps.apple.com/us/app/saxjax-colorfull-todolist/id1643164134)::En af de mange todo list apps::",
+        "[Notio](https://musedlab.org/notio)::En web app som kan anvendes til at undervise og udforske skalaer i det musikalske univers::",
+
   ]
 
 }
