@@ -20,7 +20,11 @@ import { animate, stagger, state, style, transition, trigger, query } from '@ang
       transition('* <=> *', [
         query(':enter', [
           style({ transform: 'translateY(120%)' }),
-          animate('0.5s ease-in', style({ transform: 'translateY(0%)' }))
+          animate('0.5s ease-in', style({transform: 'translateY(0%)' }))
+        ], { optional: true }),
+        query('.page-footer', [
+          style({ height:'0',transform: 'translateY(120%)' }),
+          animate('0.5s ease-in', style({height:'*', transform: 'translateY(0%)' }))
         ], { optional: true }),
       ])
     ])
