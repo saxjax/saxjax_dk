@@ -23,5 +23,5 @@ export class AppComponent {
   audioPlayer = inject(AudioPlayerService)
   title = 'saxjax.dk';
   showFooter: 'showInfo' | 'hideInfo' = 'hideInfo';
-  onClick = () => this.audioPlayer.playSample('src/assets/audio/Merserburger Sauberspruche.mp3');
+  onClick = () => this.audioPlayer.play('merserburger_sauberspruche');
 }
