@@ -1,30 +1,32 @@
-@import "../../../styles";
+@use '../../../styles';
+@use '../../../../src/assets/colorpallettes/color-pallette.scss' as color-pallette;
 
 .title {
-  background-color: $purple-bg-4;
-  color: $purple-text-4;
-  padding:1rem;
-
+  background-color: color-pallette.$purple-bg-4;
+  color: color-pallette.$purple-text-4;
+  padding: 1rem;
 }
+
 .text-and-image {
-display: flex;
-.content{
-  padding: 2rem;
-}
-.image{
-  position: relative;
-  overflow: hidden;
-  padding: 2rem;
-  width: 40%;
-  max-width: 40vh;
-  max-height: 40vh;
+  display: flex;
 
-  img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  .content {
+    padding: 2rem;
   }
-}
 
+  .image {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    width: 40%;
+    max-width: 40vh;
+    max-height: 40vh;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }

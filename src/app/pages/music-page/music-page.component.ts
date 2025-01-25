@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core'
 import { DescriptionAfterColonPipe } from '../../../pipes/description-after-colon.pipe'
 import { LinkFromParenthesisPipe } from '../../../pipes/link-from-parenthesis.pipe'
 import { TitleFromSquareBracketsPipe } from '../../../pipes/title-from-square-brackets.pipe'
-import { TrustPipe } from '../../../pipes/trust.pipe'
 import { ContentPageComponent } from '../../common/content-page/content-page.component'
 import { VideoContentComponent } from '../../common/video-content/video-content.component'
 import { ColorScheme } from '../../model/ColorScheme'
@@ -14,7 +13,6 @@ import { ColorScheme } from '../../model/ColorScheme'
     LinkFromParenthesisPipe,
     TitleFromSquareBracketsPipe,
     DescriptionAfterColonPipe,
-    TrustPipe,
     ContentPageComponent,
     VideoContentComponent,
   ],

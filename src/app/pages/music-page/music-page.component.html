@@ -1,21 +1,27 @@
 <content-page
-title="{{title}}"
-[colorscheme]="ColorScheme.green"
-[images]="['./assets/images/saxjax_soulfunction.jpeg','./assets/images/bowie_project.jpeg','./assets/images/ramashang.jpeg','./assets/images/saxjax_ontour_hi.jpeg']"
-altImageText="saxjax playing saxophone"
+  title="{{ title }}"
+  [colorscheme]="ColorScheme.green"
+  [images]="[
+    './assets/images/saxjax_soulfunction.jpeg',
+    './assets/images/bowie_project.jpeg',
+    './assets/images/ramashang.jpeg',
+    './assets/images/saxjax_ontour_hi.jpeg',
+  ]"
+  altImageText="saxjax playing saxophone"
 >
   <div class="text-and-image">
     <div class="content">
-      @for(link of links; track link){
+      @for (link of links; track link) {
         <p>
-          <a href="{{link | linkFromParenthesis}}">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+          <a href="{{ link | linkFromParenthesis }}">{{ link | titleFromSquareBrackets }}</a
+          >:{{ link | descriptionAfterColon }}
         </p>
       }
     </div>
   </div>
 
   <h3>Her er lidt sjov fra mit musiker virke</h3>
-  @for(iframeUrl of urls; track iframeUrl){
-    <video-content [iframeUrl]="iframeUrl"/>
+  @for (iframeUrl of urls; track iframeUrl) {
+    <video-content [iframeUrl]="iframeUrl" />
   }
 </content-page>

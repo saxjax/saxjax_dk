@@ -1,8 +1,8 @@
-import { DescriptionAfterColonPipe } from './description-after-colon.pipe';
+import { DescriptionAfterColonPipe } from './description-after-colon.pipe'
 
 describe('DescriptionAfterColonPipe', () => {
   it('create an instance', () => {
-    const pipe = new DescriptionAfterColonPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+    const pipe = new DescriptionAfterColonPipe()
+    expect(pipe).toBeTruthy()
+  })
+})

@@ -1,39 +1,37 @@
 // colors.scss
 
-$primary: #3498db;       // Blue
-$secondary: #2ecc71;     // Emerald
-$accent: #e74c3c;        // Alizarin
-$background: #ecf0f1;    // Clouds
-$text: #2c3e50;          // Midnight Blue
-$link: #9b59b6;          // Amethyst
-$success: #27ae60;       // Nephritis
-$error: #c0392b;         // Pomegranate
-$warning: #f39c12;       // Orange
-$info: #3498db;          // Blue (same as primary, can be changed)
-
+$primary: #3498db; // Blue
+$secondary: #2ecc71; // Emerald
+$accent: #e74c3c; // Alizarin
+$background: #ecf0f1; // Clouds
+$text: #2c3e50; // Midnight Blue
+$link: #9b59b6; // Amethyst
+$success: #27ae60; // Nephritis
+$error: #c0392b; // Pomegranate
+$warning: #f39c12; // Orange
+$info: #3498db; // Blue (same as primary, can be changed)
 
 // Blue Palette
 $blue-bg-1: #001f3f;
 $blue-bg-2: #004080;
-$blue-bg-3: #0066cc;
+$blue-bg-3: #06c;
 $blue-bg-4: #0080ff;
-$blue-bg-5: #3399ff;
+$blue-bg-5: #39f;
 $blue-bg-6: #66b2ff;
-$blue-bg-7: #99ccff;
+$blue-bg-7: #9cf;
 $blue-bg-8: #b3d9ff;
 $blue-bg-9: #cce6ff;
 $blue-bg-10: #e6f2ff;
-
-$blue-text-1: #ffffff;
-$blue-text-2: #ffffff;
-$blue-text-3: #ffffff;
-$blue-text-4: #000000;
-$blue-text-5: #000000;
-$blue-text-6: #000000;
-$blue-text-7: #000000;
-$blue-text-8: #000000;
-$blue-text-9: #000000;
-$blue-text-10: #000000;
+$blue-text-1: #fff;
+$blue-text-2: #fff;
+$blue-text-3: #fff;
+$blue-text-4: #000;
+$blue-text-5: #000;
+$blue-text-6: #000;
+$blue-text-7: #000;
+$blue-text-8: #000;
+$blue-text-9: #000;
+$blue-text-10: #000;
 
 // Purple Palette
 $purple-bg-1: #4a235a;
@@ -46,17 +44,16 @@ $purple-bg-7: #f5ecf7;
 $purple-bg-8: #f9ebf2;
 $purple-bg-9: #fcf3cf;
 $purple-bg-10: #fdf9eb;
-
-$purple-text-1: #ffffff;
-$purple-text-2: #ffffff;
-$purple-text-3: #ffffff;
-$purple-text-4: #000000;
-$purple-text-5: #000000;
-$purple-text-6: #000000;
-$purple-text-7: #000000;
-$purple-text-8: #000000;
-$purple-text-9: #000000;
-$purple-text-10: #000000;
+$purple-text-1: #fff;
+$purple-text-2: #fff;
+$purple-text-3: #fff;
+$purple-text-4: #000;
+$purple-text-5: #000;
+$purple-text-6: #000;
+$purple-text-7: #000;
+$purple-text-8: #000;
+$purple-text-9: #000;
+$purple-text-10: #000;
 
 // Green Palette
 $green-bg-1: #004529;
@@ -69,17 +66,16 @@ $green-bg-7: #32ff8f;
 $green-bg-8: #61ffaa;
 $green-bg-9: #8effc4;
 $green-bg-10: #bdfedf;
-
-$green-text-1: #ffffff;
-$green-text-2: #ffffff;
-$green-text-3: #ffffff;
-$green-text-4: #000000;
-$green-text-5: #000000;
-$green-text-6: #000000;
-$green-text-7: #000000;
-$green-text-8: #000000;
-$green-text-9: #000000;
-$green-text-10: #000000;
+$green-text-1: #fff;
+$green-text-2: #fff;
+$green-text-3: #fff;
+$green-text-4: #000;
+$green-text-5: #000;
+$green-text-6: #000;
+$green-text-7: #000;
+$green-text-8: #000;
+$green-text-9: #000;
+$green-text-10: #000;
 
 // Yellow Palette
 $yellow-bg-1: #f39c12;
@@ -92,17 +88,16 @@ $yellow-bg-7: #fafad2;
 $yellow-bg-8: #fcfbea;
 $yellow-bg-9: #fdfdf0;
 $yellow-bg-10: #fefee8;
-
-$yellow-text-1: #ffffff;
-$yellow-text-2: #ffffff;
-$yellow-text-3: #ffffff;
-$yellow-text-4: #000000;
-$yellow-text-5: #000000;
-$yellow-text-6: #000000;
-$yellow-text-7: #000000;
-$yellow-text-8: #000000;
-$yellow-text-9: #000000;
-$yellow-text-10: #000000;
+$yellow-text-1: #fff;
+$yellow-text-2: #fff;
+$yellow-text-3: #fff;
+$yellow-text-4: #000;
+$yellow-text-5: #000;
+$yellow-text-6: #000;
+$yellow-text-7: #000;
+$yellow-text-8: #000;
+$yellow-text-9: #000;
+$yellow-text-10: #000;
 
 // Cyan Palette
 $cyan-bg-1: #007888;
@@ -115,15 +110,13 @@ $cyan-bg-7: #7aebf6;
 $cyan-bg-8: #aaf0f8;
 $cyan-bg-9: #daf5fa;
 $cyan-bg-10: #eaf9fc;
-
-$cyan-text-1: #ffffff;
-$cyan-text-2: #ffffff;
-$cyan-text-3: #ffffff;
-$cyan-text-4: #000000;
-$cyan-text-5: #000000;
-$cyan-text-6: #000000;
-$cyan-text-7: #000000;
-$cyan-text-8: #000000;
-$cyan-text-9: #000000;
-$cyan-text-10: #000000;
-
+$cyan-text-1: #fff;
+$cyan-text-2: #fff;
+$cyan-text-3: #fff;
+$cyan-text-4: #000;
+$cyan-text-5: #000;
+$cyan-text-6: #000;
+$cyan-text-7: #000;
+$cyan-text-8: #000;
+$cyan-text-9: #000;
+$cyan-text-10: #000;

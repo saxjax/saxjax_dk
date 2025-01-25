@@ -1,25 +1,30 @@
-<h3>{{title}}</h3>
+<h3>{{ title }}</h3>
 <div class="buttons">
   <button (click)="calculate()">calculate</button>
   <button (click)="generateNewPoints(20)">new</button>
 </div>
 <div class="scaling-svg-container" [@profileAnimation]="points">
-<svg id="graphCanvas" viewBox="0 0 100 100" >
-  @if(edges.length){
-  <path [attr.d]="edges | path:maxPoint" fill="none" stroke="red" stroke-width="0.3" />
-  }
-  <svg >
-    @for(point of points; track point){
-      <svg id="x:{{point.x}} y:{{point.y}} ">
-        <circle [attr.cx]="point.x | scaleTo100: maxPoint.x" [attr.cy]="point.y | scaleTo100: maxPoint.y" r="1" fill="blue"/>
-      </svg>
+  <svg id="graph-canvas" viewBox="0 0 100 100">
+    @if (edges.length) {
+      <path [attr.d]="edges | path: maxPoint" fill="none" stroke="red" stroke-width="0.3" />
+    }
+    <svg>
+      @for (point of points; track point) {
+        <svg id="x:{{ point.x }} y:{{ point.y }} ">
+          <circle
+            [attr.cx]="point.x | scaleTo100: maxPoint.x"
+            [attr.cy]="point.y | scaleTo100: maxPoint.y"
+            r="1"
+            fill="blue"
+          />
+        </svg>
       }
     </svg>
   </svg>
-  <p>points:
-    @for(point of points; track point){
-      <span>({{point.x | number:'1.0-2'}},{{point.y | number:'1.0-2'}})</span>
+  <p>
+    points:
+    @for (point of points; track point) {
+      <span>({{ point.x | number: '1.0-2' }},{{ point.y | number: '1.0-2' }})</span>
     }
-    </p>
+  </p>
 </div>
-

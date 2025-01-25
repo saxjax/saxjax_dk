@@ -2,10 +2,14 @@
 <main class="main">
   <top-menu></top-menu>
   <div class="content">
-    <div style="display:contents">
-   <router-outlet />
-   </div>
+    <div style="display: contents">
+      <router-outlet />
+    </div>
   </div>
-  <page-footer  (click)="onClick()" [showInfoState]="showFooter" (mouseover)="showFooter = 'showInfo'" (mouseleave)="showFooter = 'hideInfo'"></page-footer>
+  <page-footer
+    (click)="onClick()"
+    [showInfoState]="showFooter"
+    (mouseover)="showFooter = 'showInfo'"
+    (mouseleave)="showFooter = 'hideInfo'"
+  ></page-footer>
 </main>
-

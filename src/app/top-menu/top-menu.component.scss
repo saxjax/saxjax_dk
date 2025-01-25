@@ -1,18 +1,18 @@
-// @import "../../styles.scss";
-@import "../../assets/colorpallettes/color-pallette.scss";
-:host{
+@use '../../../src/assets/colorpallettes/color-pallette.scss' as color-pallette;
+
+:host {
   display: contents;
 }
+
 .main-menu {
   width: 100%;
-
 
   &__image-header {
     min-height: 200px;
     height: 80%;
-    background-image:url('/assets/images/jambon_ramashang.jpeg') ;
-    background-attachment:scroll;
-    object-fit:cover;
+    background-image: url('/assets/images/jambon_ramashang.jpeg');
+    background-attachment: scroll;
+    object-fit: cover;
     background-size: cover;
     background-position: center 25%;
     overflow: hidden;
@@ -20,24 +20,24 @@
     align-items: center;
     justify-content: center;
   }
-  &__content{
-    background-color: $background;
+
+  &__content {
+    background-color: color-pallette.$background;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .page-title{
+  .page-title {
     padding: 10px;
   }
-  .main-menu-nav {
 
-    &__items{
+  .main-menu-nav {
+    &__items {
       display: flex;
       align-items: flex-start;
       list-style: none;
       flex-wrap: wrap;
-
     }
 
     &__item {
