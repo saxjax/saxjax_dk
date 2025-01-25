@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/",
+    "/music",
+    "/privacy-policy",
+    "/products",
+    "/programming"

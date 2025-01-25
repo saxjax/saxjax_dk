@@ -1,18 +1,44 @@
-.menu {
-  background: aqua;
+// @import "../../styles.scss";
+@import "../../assets/colorpallettes/color-pallette.scss";
+:host{
+  display: contents;
+}
+.main-menu {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+
+  &__image-header {
+    min-height: 200px;
+    height: 80%;
+    background-image:url('/assets/images/jambon_ramashang.jpeg') ;
+    background-attachment:scroll;
+    object-fit:cover;
+    background-size: cover;
+    background-position: center 25%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__content{
+    background-color: $background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .page-title{
     padding: 10px;
   }
-  .page-links {
-    background: orange;
-    display: flex;
-    align-items: flex-start;
+  .main-menu-nav {
+
+    &__items{
+      display: flex;
+      align-items: flex-start;
+      list-style: none;
+      flex-wrap: wrap;
+
+    }
 
     &__item {
       padding: 10px;

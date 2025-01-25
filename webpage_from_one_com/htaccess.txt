@@ -1,0 +1,5 @@
+AuthName "Hvis du er Jakob Skov Søndergård Så er du velkommen ellers så er du ikke!"
+AuthType Basic
+AuthUserFile /customers/5/e/9/saxjax.dk/httpd.www/.htpasswd
+AuthGroupFile /dev/null 
+require valid-

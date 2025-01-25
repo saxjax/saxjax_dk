@@ -1,0 +1,13 @@
+<content-page
+[colorscheme]="ColorScheme.purple"
+title="products-page"
+image="./assets/images/saxjax_tuner_on_stage.jpeg"
+altimagetext="saxjax drinking coffee">
+<ng-container>
+  @for(link of links; track link){
+  <p>
+    <a href="{{link | linkFromParenthesis}}" target="_blank">{{link | titleFromSquareBrackets}}</a>:{{link | descriptionAfterColon}}
+  </p>
+}
+  </ng-container>
+</content-page>

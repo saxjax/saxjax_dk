@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import { Component } from '@angular/core'
+import { RouterLink, RouterLinkActive } from '@angular/router'
+import { showMenu } from '../animations/show-menu'
 
 @Component({
   selector: 'top-menu',
-  standalone: true,
-  imports: [
-    RouterLinkActive,
-    RouterLink
-  ],
+  imports: [RouterLinkActive, RouterLink],
   templateUrl: './top-menu.component.html',
-  styleUrl: './top-menu.component.scss'
+  styleUrl: './top-menu.component.scss',
+  animations: [showMenu],
 })
 export class TopMenuComponent {
-
+  protected menuState: 'open' | 'closed' | 'initial' = 'open'
+  protected pageSelection: 'pageSelected' | 'noPageSelected' = 'noPageSelected'
 }

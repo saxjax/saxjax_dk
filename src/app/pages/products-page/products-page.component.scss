@@ -1,0 +1,30 @@
+@import "../../../styles";
+
+.title {
+  background-color: $purple-bg-4;
+  color: $purple-text-4;
+  padding:1rem;
+
+}
+.text-and-image {
+display: flex;
+.content{
+  padding: 2rem;
+}
+.image{
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  width: 40%;
+  max-width: 40vh;
+  max-height: 40vh;
+
+  img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  }
+}
+
+}

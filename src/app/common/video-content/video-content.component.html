@@ -1,0 +1,19 @@
+ @defer (on viewport) {
+  <div class="video-container" [@showvideo]="show()">
+      <button class="popuot-button"  (click)="toggleShow()">{{show()=='show'? 'shrink' : 'pop out'}}</button>
+      <iframe @animation
+        class="video"
+        width="100%"
+        height="100%"
+        [src]="iframeUrl() |trust"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+      </div>
+    }
+    @placeholder {
+      <p class="placeholder">{{iframeUrl()}}</p>
+    }
+    @error {}

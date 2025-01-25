@@ -1,0 +1,17 @@
+  <div class="page-footer" [@showInfo]="showInfoState()">
+    @if(showInfoState() === 'showInfo'){
+      <ul class="page-footer__items" >
+        <name-field class="page-footer__item"></name-field>
+        <tlf-field class="page-footer__item"></tlf-field>
+        <mail-field class="page-footer__item"></mail-field>
+        <address-field class="page-footer__item"></address-field>
+      </ul>
+
+    }
+    @else {
+      <ul class="page-footer__items" >
+        <p>{{'@Jakob'}}</p>
+      </ul>
+
+    }
+  </div>

@@ -1,0 +1,10 @@
+@import "../../../styles.scss";
+
+:host{
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: stretch;
+  z-index: inherit;
+  min-height: fit-content;
+  overflow: hidden;
+}
