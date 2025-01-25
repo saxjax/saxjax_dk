@@ -1,14 +1,13 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'titleFromSquareBrackets',
-  standalone: true
+  standalone: true,
 })
 export class TitleFromSquareBracketsPipe implements PipeTransform {
-  fromSquareBracketsRegex: RegExp = /\[(.*?)\]/gm
-  transform(inputString:string): string {
+  fromSquareBracketsRegex = /\[(.*?)\]/gm
+  transform(inputString: string): string {
     const title = inputString.match(this.fromSquareBracketsRegex)
-    return title ? title[0].replace(/\[|\]/g,'') : inputString;
+    return title ? title[0].replace(/\[|\]/g, '') : inputString
   }
-
 }

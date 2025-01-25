@@ -1,16 +1,13 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Point } from '../app/model/point';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'scaleTo100',
-  standalone: true
+  standalone: true,
 })
 export class ScaleTo100Pipe implements PipeTransform {
+  transform(value: number, maxValue: number, _minRange = 0, maxRange = 100): unknown {
+    const scalar = maxRange / (maxRange - _minRange)
 
-  transform(value: number, maxValue:number, minRange:number = 0, maxRange:number = 100): unknown {
-    const scalar = maxRange/maxValue
-
-    return value * scalar;
+    return value * scalar
   }
-
 }
