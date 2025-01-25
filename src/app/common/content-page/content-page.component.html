@@ -1,16 +1,15 @@
 <div @routeTransition>
-<content-title class="content-title"[colorscheme]="colorscheme" title="{{title}}"/>
-<div class="text-and-image">
-  <div class="content" [ngClass]="{'full-width': images.length === 0}">
-    <ng-content></ng-content>
-  </div>
-  @if(images.length > 0){
-    <div class="images">
-      @for(image of images; track image){
-        <img class="image" src="{{image}}" alt="{{altImgText}}" width="{{imageWidth}}">
-      }
+  <content-title class="content-title" [colorscheme]="colorscheme" title="{{ title }}" />
+  <div class="text-and-image">
+    <div class="content" [ngClass]="{ 'full-width': images.length === 0 }">
+      <ng-content></ng-content>
     </div>
-
-  }
-</div>
+    @if (images.length > 0) {
+      <div class="images">
+        @for (image of images; track image) {
+          <img class="image" src="{{ image }}" alt="{{ altImgText }}" width="{{ imageWidth }}" />
+        }
+      </div>
+    }
+  </div>
 </div>

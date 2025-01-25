@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { NoviaPageComponent } from './novia-page.component';
+import { NoviaPageComponent } from './novia-page.component'
 
 describe('NoviaPageComponent', () => {
-  let component: NoviaPageComponent;
-  let fixture: ComponentFixture<NoviaPageComponent>;
+  let component: NoviaPageComponent
+  let fixture: ComponentFixture<NoviaPageComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoviaPageComponent]
-    })
-    .compileComponents();
+      imports: [NoviaPageComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(NoviaPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(NoviaPageComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

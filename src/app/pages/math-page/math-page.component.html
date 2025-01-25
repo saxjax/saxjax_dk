@@ -1,18 +1,15 @@
-<content-page
-title="{{title}}"
-[colorscheme]="ColorScheme.green"
->
+<content-page title="{{ title }}" [colorscheme]="ColorScheme.green">
   <div class="text-and-image">
     <div class="content">
       <h3>Matrix rules and definitions</h3>
       <table>
-      @for(mathRule of mathRules; track mathRule){
-      <tr>
-       <td>{{mathRule.name}}</td>
-       <td>{{mathRule.formula}}</td>
-      </tr>
-      }
-    </table>
+        @for (mathRule of mathRules; track mathRule) {
+          <tr>
+            <td>{{ mathRule.name }}</td>
+            <td>{{ mathRule.formula }}</td>
+          </tr>
+        }
+      </table>
     </div>
   </div>
 </content-page>

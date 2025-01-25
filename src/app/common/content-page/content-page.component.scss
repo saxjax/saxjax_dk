@@ -1,62 +1,66 @@
-@import "../../../styles";
+@use '../../../styles';
+@use '../../../../src/assets/colorpallettes/color-pallette.scss' as color-pallette;
 
 .title {
   margin-top: 0;
-  padding:1rem;
+  padding: 1rem;
 
-  &__blue4{
-    background-color: $blue-bg-4;
-    color: $blue-text-4;
+  &__blue4 {
+    background-color: color-pallette.$blue-bg-4;
+    color: color-pallette.$blue-text-4;
+  }
 
+  &__purple4 {
+    background-color: color-pallette.$purple-bg-4;
+    color: color-pallette.$purple-text-4;
   }
-  &__purple4{
-    background-color: $purple-bg-4;
-    color: $purple-text-4;
 
+  &__green4 {
+    background-color: color-pallette.$green-bg-4;
+    color: color-pallette.$green-text-4;
   }
-  &__green4{
-    background-color: $green-bg-4;
-    color: $green-text-4;
+
+  &__yellow4 {
+    background-color: color-pallette.$yellow-bg-4;
+    color: color-pallette.$yellow-text-4;
   }
-  &__yellow4{
-    background-color: $yellow-bg-4;
-    color: $yellow-text-4;
-  }
-  &__cyan4{
-    background-color: $cyan-bg-4;
-    color: $cyan-text-4;
+
+  &__cyan4 {
+    background-color: color-pallette.$cyan-bg-4;
+    color: color-pallette.$cyan-text-4;
   }
 }
+
 .text-and-image {
   max-height: 45vh;
   overflow: scroll;
   display: flex;
   align-items: flex-start;
 
-.content{
-  overflow: auto;
-  padding: 3.2rem;
-  width: 66%;
-}
+  .content {
+    overflow: auto;
+    padding: 3.2rem;
+    width: 66%;
+  }
 
-.images{
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+  .images {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 
-  .image{
-    // position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit:contain;
-  padding-left: 1.6rem;
-  margin-bottom: 1rem;
+    .image {
+      // position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding-left: 1.6rem;
+      margin-bottom: 1rem;
+    }
   }
 }
-}
 
-.full-width{
+.full-width {
   width: 100% !important;
   padding: 0 !important;
 }

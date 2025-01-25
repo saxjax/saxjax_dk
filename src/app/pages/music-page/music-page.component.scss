@@ -1,41 +1,43 @@
-@import "../../../styles";
+@use '../../../styles';
+@use '../../../../src/assets/colorpallettes/color-pallette.scss' as color-pallette;
 
 .title {
-  background-color: $green-bg-4;
-  color:$green-text-4;
-  padding:1rem;
-
+  background-color: color-pallette.$green-bg-4;
+  color: color-pallette.$green-text-4;
+  padding: 1rem;
 }
+
 .text-and-image {
   display: flex;
-  .content{
+
+  .content {
     padding: 2rem;
   }
-  .image{
+
+  .image {
     position: relative;
     width: 40%;
     padding-bottom: 40%; /* Adjust this percentage to set the aspect ratio (height/width) */
     overflow: hidden;
-    img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    padding: 2rem;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      padding: 2rem;
     }
   }
-
-  }
-
-  .video:not(.ng-animating):hover{
-    filter:drop-shadow(0 0 10px rgba(black,0.5));
-    outline-color: white;
-    scale: 1.01;
 }
 
-  .placeholder {
-    color: black;
-    height: 100%;
-    width: 100%;
-  }
+.video:not(.ng-animating):hover {
+  filter: drop-shadow(0 0 10px rgba(black, 0.5));
+  outline-color: white;
+  scale: 1.01;
+}
 
+.placeholder {
+  color: black;
+  height: 100%;
+  width: 100%;
+}
