@@ -1,6 +1,6 @@
 import { animate, group, keyframes, query, stagger, style, transition, trigger } from '@angular/animations'
 import { DecimalPipe } from '@angular/common'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, model, OnInit } from '@angular/core'
 import { PathPipe } from '../../pipes/path.pipe'
 import { ScaleTo100Pipe } from '../../pipes/scale-to100.pipe'
 import { Point } from '../model/point'
@@ -50,7 +50,7 @@ import { Point } from '../model/point'
   ],
 })
 export class SaxjaxGraphPlotComponent implements OnInit {
-  @Input() points: Point[] = []
+  points = model<Point[]>([])
   @Input() title = 'no name'
   @Input() algorithm!: (points: Point[]) => Point[]
   edges: Point[] = []
@@ -61,26 +61,40 @@ export class SaxjaxGraphPlotComponent implements OnInit {
     this.maxPoint = { x: 1, y: 1 }
     this.minPoint = { x: 0, y: 0 }
 
-    if (this.points.length > 0) {
-      for (const point of this.points) {
+    if (this.points().length === 0) {
+      this.generateNewPoints()
+    }
+    if (this.points().length > 0) {
+      for (const point of this.points()) {
         this.maxPoint = { x: Math.max(this.maxPoint.x, point.x), y: Math.max(this.maxPoint.y, point.y) }
         this.minPoint = { x: Math.min(this.maxPoint.x, point.x), y: Math.min(this.maxPoint.y, point.y) }
       }
     }
   }
 
-  generateNewPoints(count: number) {
+  generateNewPoints(count?: number) {
+    if (!count) {
+      count = this.generateRandomInteger(100)
+      count = count > 5 ? count : 5
+    }
     this.edges = []
-    this.points = new Array(count)
+    const points = new Array(count)
     console.log('New points:')
     for (let n = 0; n < count; n++) {
-      this.points[n] = { x: Math.random() * 100, y: Math.random() * 100 }
-      console.log('x:' + this.points[n].x + ' y:' + this.points[n].y)
+      points[n] = { x: Math.random() * 100, y: Math.random() * 100 }
+      console.log('x:' + points[n].x + ' y:' + points[n].y)
     }
+    this.points.set(points)
   }
 
   calculate() {
     this.edges = []
-    this.edges = this.algorithm(this.points)
+    this.edges = this.algorithm(this.points())
+  }
+
+  generateRandomInteger(max: number) {
+    const bytes = new Uint8Array(1)
+    crypto.getRandomValues(bytes)
+    return bytes[0] % max
   }
 }
