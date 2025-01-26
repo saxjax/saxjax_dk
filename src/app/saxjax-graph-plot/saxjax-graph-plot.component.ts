@@ -1,6 +1,6 @@
 import { animate, group, keyframes, query, stagger, style, transition, trigger } from '@angular/animations'
 import { DecimalPipe } from '@angular/common'
-import { Component, Input, model, OnInit } from '@angular/core'
+import { Component, input, model, OnInit } from '@angular/core'
 import { PathPipe } from '../../pipes/path.pipe'
 import { ScaleTo100Pipe } from '../../pipes/scale-to100.pipe'
 import { Point } from '../model/point'
@@ -51,8 +51,8 @@ import { Point } from '../model/point'
 })
 export class SaxjaxGraphPlotComponent implements OnInit {
   points = model<Point[]>([])
-  @Input() title = 'no name'
-  @Input() algorithm!: (points: Point[]) => Point[]
+  title = input('no name')
+  algorithm = input((points: Point[]) => points)
   edges: Point[] = []
   maxPoint: Point = { x: 100, y: 100 }
   minPoint: Point = { x: 0, y: 0 }
@@ -89,7 +89,7 @@ export class SaxjaxGraphPlotComponent implements OnInit {
 
   calculate() {
     this.edges = []
-    this.edges = this.algorithm(this.points())
+    this.edges = this.algorithm()(this.points())
   }
 
   generateRandomInteger(max: number) {
