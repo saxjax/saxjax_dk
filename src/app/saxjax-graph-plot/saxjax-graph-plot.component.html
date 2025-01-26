@@ -5,15 +5,15 @@
 </div>
 <div class="scaling-svg-container" [@profileAnimation]="points()">
   <svg id="graph-canvas" viewBox="0 0 100 100">
-    @if (edges.length) {
-      <path [attr.d]="edges | path: maxPoint" fill="none" stroke="red" stroke-width="0.3" />
+    @if (edges().length) {
+      <path [attr.d]="edges() | path: maxPoint()" fill="none" stroke="red" stroke-width="0.3" />
     }
     <svg>
       @for (point of points(); track point) {
         <svg id="x:{{ point.x }} y:{{ point.y }} ">
           <circle
-            [attr.cx]="point.x | scaleTo100: maxPoint.x"
-            [attr.cy]="point.y | scaleTo100: maxPoint.y"
+            [attr.cx]="point.x | scaleTo100: maxPoint().x"
+            [attr.cy]="point.y | scaleTo100: maxPoint().y"
             r="1"
             fill="blue"
           />
