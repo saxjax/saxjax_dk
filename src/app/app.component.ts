@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { Component, inject } from '@angular/core'
 import { ActivatedRoute, RouterOutlet } from '@angular/router'
-import { TopMenuComponent } from './top-menu/top-menu.component'
+import { AudioPlayerService } from '../services/audio-player.service'
 import { routeTransition } from './animations/route-transition'
 import { showMenu } from './animations/show-menu'
 import { PageFooterComponent } from './common/page-footer/page-footer.component'
-import { AudioPlayerService } from '../services/audio-player.service'
+import { TopMenuComponent } from './top-menu/top-menu.component'
 
 @Component({
   selector: 'app-root',
