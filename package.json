@@ -8,7 +8,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:saxjax-dk": "node dist/saxjax-dk/server/server.mjs",
     "prune": "pnpm prune",
     "lint": "ng lint && npx stylelint '**/*.scss' && npx prettier . --check",
     "lint:fix": "ng lint --fix && npx stylelint '**/*.scss' --fix && npx prettier . --write"

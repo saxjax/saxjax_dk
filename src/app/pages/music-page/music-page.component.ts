@@ -5,6 +5,7 @@ import { TitleFromSquareBracketsPipe } from '../../../pipes/title-from-square-br
 import { ContentPageComponent } from '../../common/content-page/content-page.component'
 import { VideoContentComponent } from '../../common/video-content/video-content.component'
 import { ColorScheme } from '../../model/ColorScheme'
+
 @Component({
   selector: 'music-page',
   templateUrl: './music-page.component.html',
@@ -16,6 +17,7 @@ import { ColorScheme } from '../../model/ColorScheme'
     ContentPageComponent,
     VideoContentComponent,
   ],
+  standalone: true,
 })
 export class MusicPageComponent {
   @Input() title = 'Orkestre som jeg har medvirket i:'

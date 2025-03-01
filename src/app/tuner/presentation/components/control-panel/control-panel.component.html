@@ -1,0 +1,66 @@
+<div class="control-panel">
+  <div class="main-controls">
+    <button class="btn capture-btn" [class.active]="isCapturing" (click)="onToggleCapture()">
+      {{ isCapturing ? 'Stop' : 'Start' }} Tuner
+    </button>
+
+    <button class="btn tone-btn" [disabled]="isPlaying" (click)="onPlayReferenceTone()">Play Reference Tone</button>
+
+    <button class="btn session-btn" *ngIf="!isRecording && !showSessionNameInput" (click)="toggleSessionNameInput()">
+      Record Session
+    </button>
+
+    <button class="btn session-btn stop" *ngIf="isRecording" (click)="onStopSession()">Stop Recording</button>
+
+    <button class="btn settings-btn" (click)="toggleSettings()">Settings</button>
+  </div>
+
+  <div class="session-input" *ngIf="showSessionNameInput">
+    <input type="text" [(ngModel)]="sessionName" placeholder="Enter session name" class="session-name-input" />
+    <button class="btn start-session-btn" [disabled]="!sessionName.trim()" (click)="onStartSession()">Start</button>
+    <button class="btn cancel-btn" (click)="toggleSessionNameInput()">Cancel</button>
+  </div>
+
+  <div class="settings-panel" *ngIf="showSettings">
+    <h3>Tuner Settings</h3>
+
+    <div class="setting-group">
+      <label for="algorithm">Pitch Detection Algorithm:</label>
+      <select id="algorithm" [ngModel]="currentStrategy?.name" (ngModelChange)="onChangeStrategy($event)">
+        <option *ngFor="let strategy of availableStrategies" [ngValue]="strategy">
+          {{ strategy.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label for="reference">Reference Frequency (Hz):</label>
+      <input type="number" id="reference" [(ngModel)]="referenceFrequency" min="400" max="500" step="1" />
+    </div>
+
+    <div class="setting-group">
+      <label for="tolerance">Tuning Tolerance (cents):</label>
+      <input type="number" id="tolerance" [(ngModel)]="tuningTolerance" min="1" max="50" step="1" />
+    </div>
+
+    <div class="setting-group checkbox">
+      <input type="checkbox" id="showGraph" [(ngModel)]="showFrequencyGraph" />
+      <label for="showGraph">Show Frequency Graph</label>
+    </div>
+
+    <div class="setting-group checkbox">
+      <input type="checkbox" id="playTones" [(ngModel)]="playReferenceTones" />
+      <label for="playTones">Play Reference Tones When In Tune</label>
+    </div>
+
+    <div class="setting-group" *ngIf="playReferenceTones">
+      <label for="volume">Reference Tone Volume:</label>
+      <input type="range" id="volume" [(ngModel)]="referenceTonesVolume" min="0" max="1" step="0.1" />
+    </div>
+
+    <div class="settings-actions">
+      <button class="btn save-btn" (click)="onUpdatePreferences()">Save Settings</button>
+      <button class="btn cancel-btn" (click)="toggleSettings()">Cancel</button>
+    </div>
+  </div>
+</div>

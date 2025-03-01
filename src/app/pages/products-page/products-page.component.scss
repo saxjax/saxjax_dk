@@ -1,5 +1,48 @@
 @use '../../../styles';
 @use '../../../../src/assets/colorpallettes/color-pallette.scss' as color-pallette;
+@use 'sass:color';
+
+// Floating tuner button styles
+.floating-tuner-button {
+  // position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: color-pallette.$purple-bg-4;
+  color: color-pallette.$purple-text-4;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 30%);
+  cursor: pointer;
+
+  // z-index: 100;
+  transition: all 0.2s ease;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+
+    .tuner-text {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: color.adjust(color-pallette.$purple-bg-4, $lightness: 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgb(0 0 0 / 40%);
+  }
+
+  .tuner-icon {
+    font-size: 1.5rem;
+  }
+
+  .tuner-text {
+    font-weight: bold;
+  }
+}
 
 .title {
   background-color: color-pallette.$purple-bg-4;

@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.pitch-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.note-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .note {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .frequency {
+    font-size: 1.2rem;
+    color: #666;
+  }
+}
+
+.tuning-indicator-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.tuning-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+
+  .scale-mark {
+    font-size: 1.2rem;
+
+    &.flat {
+      color: #3498db; // Blue for flat
+    }
+
+    &.center {
+      color: #2ecc71; // Green for in tune
+    }
+
+    &.sharp {
+      color: #e74c3c; // Red for sharp
+    }
+  }
+}
+
+.tuning-indicator {
+  position: relative;
+  height: 4px;
+  background-color: #ddd;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    width: 4px;
+    height: 20px;
+    background-color: #2ecc71;
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+
+  .indicator-needle {
+    position: absolute;
+    top: -12px;
+    width: 8px;
+    height: 28px;
+    background-color: #333;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    transition: left 0.2s ease-out;
+
+    &.in-tune {
+      background-color: #2ecc71; // Green for in tune
+    }
+
+    &.flat {
+      background-color: #3498db; // Blue for flat
+    }
+
+    &.sharp {
+      background-color: #e74c3c; // Red for sharp
+    }
+
+    &.neutral {
+      background-color: #95a5a6; // Gray for neutral
+    }
+  }
+}
+
+.deviation-display {
+  text-align: center;
+  font-size: 1.2rem;
+
+  span {
+    font-weight: bold;
+
+    &.in-tune {
+      color: #2ecc71; // Green for in tune
+    }
+
+    &.flat {
+      color: #3498db; // Blue for flat
+    }
+
+    &.sharp {
+      color: #e74c3c; // Red for sharp
+    }
+
+    &.neutral {
+      color: #95a5a6; // Gray for neutral
+    }
+  }
+}

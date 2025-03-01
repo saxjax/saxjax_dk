@@ -1,0 +1,10 @@
+<div class="floating-window">
+  <div class="floating-window-header" (mousedown)="onMouseDown($event)">
+    <span>Portal Window</span>
+    <button class="close-button" (click)="close()">×</button>
+  </div>
+  <div class="floating-window-content">
+    <ng-content />
+  </div>
+  <div class="resize-handle" (mousedown)="onResizeMouseDown($event)"></div>
+</div>

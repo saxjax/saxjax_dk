@@ -1,0 +1,22 @@
+<div class="pitch-display">
+  <div class="note-display">
+    <div class="note">{{ noteDisplay }}</div>
+    <div class="frequency">{{ frequencyDisplay }}</div>
+  </div>
+
+  <div class="tuning-indicator-container">
+    <div class="tuning-scale">
+      <div class="scale-mark flat">♭</div>
+      <div class="scale-mark center">●</div>
+      <div class="scale-mark sharp">♯</div>
+    </div>
+
+    <div class="tuning-indicator">
+      <div class="indicator-needle" [class]="tuningClass" [style.left.%]="tuningPosition"></div>
+    </div>
+
+    <div class="deviation-display">
+      <span [class]="tuningClass">{{ deviationDisplay }}</span> cents
+    </div>
+  </div>
+</div>

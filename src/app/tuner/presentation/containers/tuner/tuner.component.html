@@ -1,0 +1,51 @@
+<div class="tuner-container">
+  <h1 class="tuner-title">Angular Instrument Tuner</h1>
+
+  <div class="error-message" *ngIf="error()">
+    <div class="error-content">
+      <p>{{ error() }}</p>
+      <button class="close-btn" (click)="onClearError()">×</button>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <p>Click the <strong>"Start Tuner"</strong> button below to begin capturing audio and detecting pitch.</p>
+  </div>
+
+  <div class="tuner-content">
+    <app-pitch-display
+      [pitch]="currentPitch()"
+      [isInTune]="isInTune()"
+      [deviationInCents]="deviationInCents()"
+      [tuningTolerance]="preferences()?.tuningTolerance || 5"
+    >
+    </app-pitch-display>
+
+    <app-frequency-graph
+      *ngIf="preferences()?.showFrequencyGraph"
+      [pitchHistory]="pitchHistory()"
+      [tuningTolerance]="preferences()?.tuningTolerance || 5"
+    >
+    </app-frequency-graph>
+
+    <app-control-panel
+      [isCapturing]="isCapturing()"
+      [isRecording]="isRecording()"
+      [isPlaying]="isPlaying()"
+      [availableStrategies]="availableStrategies"
+      [currentStrategy]="currentStrategy"
+      [referenceFrequency]="preferences()?.referenceFrequency || 440"
+      [tuningTolerance]="preferences()?.tuningTolerance || 5"
+      [showFrequencyGraph]="preferences()?.showFrequencyGraph || true"
+      [playReferenceTones]="preferences()?.playReferenceTones || false"
+      [referenceTonesVolume]="preferences()?.referenceTonesVolume || 0.5"
+      (toggleCapture)="onToggleCapture()"
+      (startSession)="onStartSession($event)"
+      (stopSession)="onStopSession()"
+      (playReferenceTone)="onPlayReferenceTone()"
+      (changeStrategy)="onChangeStrategy($event)"
+      (updatePreferences)="onUpdatePreferences($event)"
+    >
+    </app-control-panel>
+  </div>
+</div>

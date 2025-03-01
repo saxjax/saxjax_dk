@@ -1,15 +1,31 @@
-<content-page
-  [colorscheme]="ColorScheme.purple"
-  title="products-page"
-  image="./assets/images/saxjax_tuner_on_stage.jpeg"
-  altimagetext="saxjax drinking coffee"
->
-  <ng-container>
-    @for (link of links; track link) {
-      <p>
-        <a href="{{ link | linkFromParenthesis }}" target="_blank">{{ link | titleFromSquareBrackets }}</a
-        >:{{ link | descriptionAfterColon }}
-      </p>
-    }
-  </ng-container>
-</content-page>
+<div>
+  <!-- Tuner Portal -->
+  @if (showTunerPortal()) {
+    <floating-window (closeEvent)="closeTunerPortal()">
+      <app-tuner></app-tuner>
+    </floating-window>
+    <!-- <app-tuner-portal (closeEvent)="closeTunerPortal()"></app-tuner-portal> -->
+  }
+
+  <content-page
+    [colorscheme]="ColorScheme.purple"
+    title="products-page"
+    image="./assets/images/saxjax_tuner_on_stage.jpeg"
+    altimagetext="saxjax drinking coffee"
+  >
+    <ng-container>
+      @for (link of links; track link) {
+        <p>
+          <a href="{{ link | linkFromParenthesis }}" target="_blank">{{ link | titleFromSquareBrackets }}</a
+          >:{{ link | descriptionAfterColon }}
+        </p>
+      }
+    </ng-container>
+
+    <!-- Floating Tuner Button -->
+    <button class="floating-tuner-button" (click)="toggleTunerPortal()">
+      <span class="tuner-icon">🎵</span>
+      <span class="tuner-text">Open Tuner</span>
+    </button>
+  </content-page>
+</div>

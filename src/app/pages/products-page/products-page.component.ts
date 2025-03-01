@@ -1,18 +1,43 @@
-import { Component } from '@angular/core'
+import { Component, signal } from '@angular/core'
 import { DescriptionAfterColonPipe } from '../../../pipes/description-after-colon.pipe'
 import { LinkFromParenthesisPipe } from '../../../pipes/link-from-parenthesis.pipe'
 import { TitleFromSquareBracketsPipe } from '../../../pipes/title-from-square-brackets.pipe'
 import { ContentPageComponent } from '../../common/content-page/content-page.component'
+import { FloatingWindowComponent } from '../../floating-window/floating-window.component'
 import { ColorScheme } from '../../model/ColorScheme'
+import { TunerComponent } from '../../tuner/presentation/containers/tuner/tuner.component'
 
 @Component({
   selector: 'products-page',
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.scss',
-  imports: [ContentPageComponent, LinkFromParenthesisPipe, TitleFromSquareBracketsPipe, DescriptionAfterColonPipe],
+  imports: [
+    ContentPageComponent,
+    LinkFromParenthesisPipe,
+    TitleFromSquareBracketsPipe,
+    DescriptionAfterColonPipe,
+    FloatingWindowComponent,
+    TunerComponent,
+  ],
+  standalone: true,
 })
 export class ProductsPageComponent {
   readonly ColorScheme = ColorScheme
+  showTunerPortal = signal(false)
+
+  /**
+   * Opens the tuner portal.
+   */
+  toggleTunerPortal(): void {
+    this.showTunerPortal.update((current) => !current)
+  }
+
+  /**
+   * Closes the tuner portal.
+   */
+  closeTunerPortal(): void {
+    this.showTunerPortal.set(false)
+  }
 
   links = [
     '[Saxjax tuner](https://apps.apple.com/dk/app/saxjax-tuner-lite/id1308528794)::INTELLIGENT • TUNER • FOR • WINDINSTRUMENTS::',
