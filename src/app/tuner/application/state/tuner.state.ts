@@ -30,8 +30,14 @@ export class TunerState {
   readonly currentSession = signal<TuningSession | null>(null)
   readonly isRecording = signal<boolean>(false)
   readonly error = signal<string | null>(null)
+  readonly savedSessions = signal<TuningSession[]>([])
+  readonly currentPlaybackSession = signal<TuningSession | null>(null)
+  readonly isPlayingSession = signal<boolean>(false)
+  readonly playbackPaused = signal<boolean>(false)
+  readonly currentPlaybackIndex = signal<number>(0)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   readonly preferences = signal<any>(null) // Will be initialized in constructor
+  readonly micSensitivity = signal<number>(0.5) // Default sensitivity value
 
   // Computed values
   readonly isInTune = computed(() => {
@@ -84,7 +90,8 @@ export class TunerState {
         this.pitchAnalysisService.setStrategy(preferredStrategy)
       }
 
-      // Set the volume for reference tones
+      // Set the volume for reference tones and microphone sensitivity
+      this.audioCaptureService.setSensitivity(prefs.micSensitivity) // Set microphone sensitivity
       this.audioPlaybackService.setVolume(prefs.referenceTonesVolume)
     } catch (err) {
       this.error.set(`Failed to load preferences: ${err}`)
@@ -105,6 +112,10 @@ export class TunerState {
     }
   }
 
+  setMicSensitivity(newMicSensitivity: number) {
+    this.micSensitivity.set(newMicSensitivity)
+    this.audioCaptureService.setSensitivity(newMicSensitivity) // Set microphone sensitivity
+  }
   /**
    * Toggles audio capture on/off.
    */
@@ -205,20 +216,37 @@ export class TunerState {
    */
   async startNewSession(name: string): Promise<void> {
     try {
+      // Reset the last recording time before starting a new session
+      this.lastRecordingTime = 0
+
+      // Create a new session
       const session = await this.tuningSessionService.createSession(name)
       this.currentSession.set(session)
+
+      // Start audio capture if not already capturing
+      if (!this.isCapturing()) {
+        this.toggleCapture()
+
+        // Wait a short time for audio capture to initialize before starting recording
+        await new Promise((resolve) => setTimeout(resolve, 500))
+      } else {
+        // If already capturing, wait for the next animation frame to ensure
+        // we're not in the middle of processing audio
+        await new Promise((resolve) => requestAnimationFrame(resolve))
+      }
+
+      // Now that everything is set up, start recording
       this.isRecording.set(true)
+
+      // Initialize the last recording time to now
+      this.lastRecordingTime = Date.now()
     } catch (err) {
       this.error.set(`Failed to start new session: ${err}`)
     }
   }
 
-  /**
-   * Stops the current recording session.
-   */
-  stopCurrentSession(): void {
-    this.isRecording.set(false)
-  }
+  // Track the last recording time to calculate duration
+  private lastRecordingTime = 0
 
   /**
    * Records the current pitch to the current session.
@@ -230,12 +258,24 @@ export class TunerState {
     if (!pitch || !session) return
 
     try {
+      const now = Date.now()
+
+      // Calculate duration based on time since last recording
+      // Default to 500ms for the first recording, cap at 2000ms to prevent memory issues
+      let duration = this.lastRecordingTime ? now - this.lastRecordingTime : 500
+
+      // Cap the duration to prevent memory issues with very long durations
+      duration = Math.min(duration, 2000)
+
+      // Update last recording time
+      this.lastRecordingTime = now
+
       // Create a new recording
       const recording = new PitchRecording(
         new Date(),
         pitch,
         pitch, // Using the same pitch as both actual and target for simplicity
-        100 // Duration in ms
+        duration // Dynamic duration based on time between recordings with a cap
       )
 
       // Add the recording to the session
@@ -244,9 +284,23 @@ export class TunerState {
 
       // Save the session
       await this.tuningSessionService.saveSession(updatedSession)
+
+      // Limit the number of recordings per session to prevent memory issues
+      if (updatedSession.pitchRecordings.length > 1000) {
+        this.stopCurrentSession()
+        this.error.set('Session recording limit reached (1000 recordings). Session has been stopped.')
+      }
     } catch (err) {
       this.error.set(`Failed to record pitch: ${err}`)
     }
+  }
+
+  /**
+   * Stops the current recording session.
+   */
+  stopCurrentSession(): void {
+    this.isRecording.set(false)
+    this.lastRecordingTime = 0 // Reset the last recording time
   }
 
   /**
@@ -294,5 +348,170 @@ export class TunerState {
    */
   clearError(): void {
     this.error.set(null)
+  }
+
+  /**
+   * Loads all saved sessions.
+   */
+  async loadSessions(): Promise<void> {
+    try {
+      const sessions = await this.getAllSessions()
+
+      // Sort sessions by creation date (newest first)
+      sessions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+
+      this.savedSessions.set(sessions)
+
+      // Log the number of sessions loaded for debugging
+      console.log(`Loaded ${sessions.length} sessions`)
+      if (sessions.length > 0) {
+        console.log(`First session: ${sessions[0].name}, recordings: ${sessions[0].pitchRecordings.length}`)
+      }
+    } catch (err) {
+      this.error.set(`Failed to load sessions: ${err}`)
+    }
+  }
+
+  /**
+   * Plays back a session.
+   * @param sessionId The ID of the session to play
+   */
+  async playSession(sessionId: string): Promise<void> {
+    try {
+      console.log(`Starting playback of session: ${sessionId}`)
+
+      // Stop any current playback
+      if (this.isPlayingSession()) {
+        await this.stopSessionPlayback()
+      }
+
+      // Get the session
+      const session = await this.tuningSessionService.getSession(sessionId)
+      if (!session) {
+        this.error.set(`Session not found: ${sessionId}`)
+        return
+      }
+
+      console.log(`Found session: ${session.name} with ${session.pitchRecordings.length} recordings`)
+
+      // Check if the session has any recordings
+      if (session.pitchRecordings.length === 0) {
+        this.error.set(`Session "${session.name}" has no recordings to play`)
+        return
+      }
+
+      // Set the current playback session
+      this.currentPlaybackSession.set(session)
+      this.currentPlaybackIndex.set(0)
+      this.isPlayingSession.set(true)
+      this.playbackPaused.set(false)
+
+      // Start playback
+      console.log(`Starting playback of ${session.pitchRecordings.length} recordings`)
+      this.playNextRecording()
+    } catch (err) {
+      console.error('Error playing session:', err)
+      this.error.set(`Failed to play session: ${err}`)
+    }
+  }
+
+  /**
+   * Plays the next recording in the current playback session.
+   */
+  private async playNextRecording(): Promise<void> {
+    const session = this.currentPlaybackSession()
+    const index = this.currentPlaybackIndex()
+
+    if (!session || !this.isPlayingSession() || this.playbackPaused()) {
+      console.log('Playback stopped or paused, not playing next recording')
+      return
+    }
+
+    if (index >= session.pitchRecordings.length) {
+      // End of session
+      console.log('Reached end of session, stopping playback')
+      this.stopSessionPlayback()
+      return
+    }
+
+    const recording = session.pitchRecordings[index]
+    console.log(
+      `Playing recording ${index + 1}/${session.pitchRecordings.length}, frequency: ${recording.actualPitch.frequency.toFixed(2)}Hz, note: ${recording.actualPitch.note.fullName}, duration: ${recording.duration}ms`
+    )
+
+    try {
+      // Validate the recording
+      if (!recording.actualPitch || !recording.actualPitch.frequency) {
+        console.error('Invalid recording data:', recording)
+        this.error.set('Invalid recording data encountered during playback')
+        this.currentPlaybackIndex.update((i) => i + 1)
+        this.playNextRecording()
+        return
+      }
+
+      // Cap playback duration to prevent memory issues
+      const safeDuration = Math.min(recording.duration, 2000)
+
+      // Play the pitch
+      await this.audioPlaybackService.playPitch(recording.actualPitch, safeDuration)
+
+      // Update the current pitch for display
+      this.currentPitch.set(recording.actualPitch)
+
+      // Move to the next recording
+      this.currentPlaybackIndex.update((i) => i + 1)
+
+      // Use requestAnimationFrame instead of setTimeout for better performance
+      // and to avoid memory issues with long timeouts
+      const nextPlaybackTime = performance.now() + safeDuration + 50
+
+      const scheduleNextRecording = (timestamp: number) => {
+        if (timestamp >= nextPlaybackTime) {
+          this.playNextRecording()
+        } else if (this.isPlayingSession() && !this.playbackPaused()) {
+          requestAnimationFrame(scheduleNextRecording)
+        }
+      }
+
+      requestAnimationFrame(scheduleNextRecording)
+    } catch (err) {
+      console.error('Error during playback:', err)
+      this.error.set(`Error during playback: ${err}`)
+
+      // Try to continue with the next recording instead of stopping completely
+      this.currentPlaybackIndex.update((i) => i + 1)
+      this.playNextRecording()
+    }
+  }
+
+  /**
+   * Pauses the current session playback.
+   */
+  pauseSessionPlayback(): void {
+    if (this.isPlayingSession()) {
+      this.playbackPaused.set(true)
+      this.audioPlaybackService.stopAll()
+    }
+  }
+
+  /**
+   * Resumes the current session playback.
+   */
+  resumeSessionPlayback(): void {
+    if (this.currentPlaybackSession() && this.playbackPaused()) {
+      this.playbackPaused.set(false)
+      this.playNextRecording()
+    }
+  }
+
+  /**
+   * Stops the current session playback.
+   */
+  async stopSessionPlayback(): Promise<void> {
+    this.isPlayingSession.set(false)
+    this.playbackPaused.set(false)
+    this.currentPlaybackIndex.set(0)
+    await this.audioPlaybackService.stopAll()
+    this.currentPitch.set(null)
   }
 }

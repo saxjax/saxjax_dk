@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component, OnDestroy, OnInit, inject } from '@angular/core'
+import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core'
 import { TunerState } from '../../../../tuner/application/state'
 import { PitchDetectionStrategy, TunerPreferences } from '../../../../tuner/domain/ports'
 import { ControlPanelComponent } from '../../components/control-panel/control-panel.component'
@@ -21,6 +21,7 @@ import { PitchDisplayComponent } from '../../components/pitch-display/pitch-disp
 })
 export class TunerComponent implements OnInit, OnDestroy {
   private readonly tunerState = inject(TunerState)
+  private readonly pitchAnalysisService = inject(PitchAnalysisService)
 
   // Expose state to the template
   protected readonly isCapturing = this.tunerState.isCapturing
@@ -32,10 +33,13 @@ export class TunerComponent implements OnInit, OnDestroy {
   protected readonly isPlaying = this.tunerState.isPlaying
   protected readonly error = this.tunerState.error
   protected readonly preferences = this.tunerState.preferences
+  protected readonly savedSessions = this.tunerState.savedSessions
+  protected readonly currentPlaybackSession = this.tunerState.currentPlaybackSession
+  protected readonly isPlayingSession = this.tunerState.isPlayingSession
 
   // Strategies for pitch detection
-  protected availableStrategies: PitchDetectionStrategy[] = []
-  protected currentStrategy: PitchDetectionStrategy | null = null
+  protected availableStrategies = signal(this.pitchAnalysisService.getAvailableStrategies())
+  protected currentStrategy = signal(this.pitchAnalysisService.getCurrentStrategy())
 
   /**
    * Initializes the component.
@@ -43,9 +47,6 @@ export class TunerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Load preferences
     this.loadPreferences()
-
-    // Get available strategies
-    this.loadStrategies()
   }
 
   /**
@@ -63,15 +64,6 @@ export class TunerComponent implements OnInit, OnDestroy {
    */
   private async loadPreferences(): Promise<void> {
     // Preferences are loaded automatically by the TunerState
-  }
-
-  /**
-   * Loads available pitch detection strategies.
-   */
-  private loadStrategies(): void {
-    const pitchAnalysisService = inject(PitchAnalysisService)
-    this.availableStrategies = pitchAnalysisService.getAvailableStrategies()
-    this.currentStrategy = pitchAnalysisService.getCurrentStrategy()
   }
 
   /**
@@ -108,9 +100,8 @@ export class TunerComponent implements OnInit, OnDestroy {
    * @param strategy The selected strategy
    */
   onChangeStrategy(strategy: PitchDetectionStrategy): void {
-    const pitchAnalysisService = inject(PitchAnalysisService)
-    pitchAnalysisService.setStrategy(strategy)
-    this.currentStrategy = strategy
+    this.pitchAnalysisService.setStrategy(strategy)
+    this.currentStrategy.set(strategy)
   }
 
   /**
@@ -121,11 +112,51 @@ export class TunerComponent implements OnInit, OnDestroy {
     this.tunerState.updatePreferences(preferences)
   }
 
+  onChangeMicSensitivity(newMicSensitivity: number) {
+    this.tunerState.setMicSensitivity(newMicSensitivity)
+  }
+
   /**
    * Clears any error message.
    */
   onClearError(): void {
     this.tunerState.clearError()
+  }
+
+  /**
+   * Loads all saved sessions.
+   */
+  onLoadSessions(): void {
+    this.tunerState.loadSessions()
+  }
+
+  /**
+   * Plays back a session.
+   * @param sessionId The ID of the session to play
+   */
+  onPlaySession(sessionId: string): void {
+    this.tunerState.playSession(sessionId)
+  }
+
+  /**
+   * Pauses the current session playback.
+   */
+  onPauseSessionPlayback(): void {
+    this.tunerState.pauseSessionPlayback()
+  }
+
+  /**
+   * Resumes the current session playback.
+   */
+  onResumeSessionPlayback(): void {
+    this.tunerState.resumeSessionPlayback()
+  }
+
+  /**
+   * Stops the current session playback.
+   */
+  onStopSessionPlayback(): void {
+    this.tunerState.stopSessionPlayback()
   }
 }
 

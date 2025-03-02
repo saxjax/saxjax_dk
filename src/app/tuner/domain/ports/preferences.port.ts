@@ -31,6 +31,11 @@ export interface TunerPreferences {
    * The volume for reference tones (0-1, default: 0.5).
    */
   referenceTonesVolume: number
+
+  /**
+   * The sensibility of the input source (0-1, default:0.5)
+   */
+  micSensitivity: number
 }
 
 /**

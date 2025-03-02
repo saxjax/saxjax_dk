@@ -14,6 +14,8 @@ export class AudioCaptureService implements AudioCapturePort {
   private audioContext: AudioContext | null = null
   private analyzer: AnalyserNode | null = null
   private dataStream: ReadableStream<Float32Array> | null = null
+  private gainNode: GainNode | null = null
+  private micGain = 0.0
 
   /**
    * Requests permission to access the microphone.
@@ -28,6 +30,16 @@ export class AudioCaptureService implements AudioCapturePort {
     } catch (err) {
       console.error('Error requesting microphone permission:', err)
       return false
+    }
+  }
+  /**
+   * Sets the microphone sensitivity.
+   * @param sensitivity The sensitivity level (0-100)
+   */
+  setSensitivity(sensitivity: number): void {
+    // Example implementation: Adjust audio settings based on sensitivity
+    if (this.gainNode) {
+      this.gainNode.gain.value = sensitivity
     }
   }
 
@@ -55,6 +67,8 @@ export class AudioCaptureService implements AudioCapturePort {
       this.audioContext = new AudioContext()
       const source = this.audioContext.createMediaStreamSource(this.stream)
       this.analyzer = this.audioContext.createAnalyser()
+      this.gainNode = this.audioContext.createGain()
+      this.gainNode.gain.value = this.micGain
 
       // Configure analyzer for optimal pitch detection
       this.analyzer.fftSize = 2048 // Large FFT for better frequency resolution
@@ -62,6 +76,7 @@ export class AudioCaptureService implements AudioCapturePort {
 
       // Connect source to analyzer (but not to destination to avoid feedback)
       source.connect(this.analyzer)
+      source.connect(this.gainNode)
 
       // Create a readable stream from the analyzer
       this.createDataStream()
@@ -90,6 +105,7 @@ export class AudioCaptureService implements AudioCapturePort {
     // Clear references
     this.analyzer = null
     this.dataStream = null
+    this.gainNode = null
   }
 
   /**

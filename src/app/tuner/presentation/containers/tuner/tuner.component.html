@@ -9,6 +9,9 @@
   </div>
 
   <div class="instructions">
+    <p>Work in progress, I am trying to use LLM prompting to build a tuner</p>
+    <p>I'm happy to announce: it is going really bad!</p>
+    <br />
     <p>Click the <strong>"Start Tuner"</strong> button below to begin capturing audio and detecting pitch.</p>
   </div>
 
@@ -32,19 +35,29 @@
       [isCapturing]="isCapturing()"
       [isRecording]="isRecording()"
       [isPlaying]="isPlaying()"
-      [availableStrategies]="availableStrategies"
-      [currentStrategy]="currentStrategy"
+      [isPlayingSession]="isPlayingSession()"
+      [availableStrategies]="availableStrategies()"
+      [currentStrategy]="currentStrategy()"
       [referenceFrequency]="preferences()?.referenceFrequency || 440"
       [tuningTolerance]="preferences()?.tuningTolerance || 5"
       [showFrequencyGraph]="preferences()?.showFrequencyGraph || true"
       [playReferenceTones]="preferences()?.playReferenceTones || false"
       [referenceTonesVolume]="preferences()?.referenceTonesVolume || 0.5"
+      [micSensitivity]="preferences()?.micSensitivity || 0.5"
+      [savedSessions]="savedSessions()"
+      [currentPlaybackSession]="currentPlaybackSession()"
       (toggleCapture)="onToggleCapture()"
       (startSession)="onStartSession($event)"
       (stopSession)="onStopSession()"
       (playReferenceTone)="onPlayReferenceTone()"
       (changeStrategy)="onChangeStrategy($event)"
       (updatePreferences)="onUpdatePreferences($event)"
+      (loadSessions)="onLoadSessions()"
+      (playSession)="onPlaySession($event)"
+      (pauseSessionPlayback)="onPauseSessionPlayback()"
+      (resumeSessionPlayback)="onResumeSessionPlayback()"
+      (stopSessionPlayback)="onStopSessionPlayback()"
+      (adjustMicSensitivityTo)="onChangeMicSensitivity($event)"
     >
     </app-control-panel>
   </div>

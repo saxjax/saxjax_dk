@@ -11,6 +11,7 @@ const DEFAULT_PREFERENCES: TunerPreferences = {
   showFrequencyGraph: true,
   playReferenceTones: false,
   referenceTonesVolume: 0.5,
+  micSensitivity: 0.0,
 }
 
 /**

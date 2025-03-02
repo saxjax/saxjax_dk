@@ -1,4 +1,17 @@
 <div class="control-panel">
+  <div class="setting-group">
+    <label for="micSensitivity">Input gain:{{ this.micSensitivity }}</label>
+    <input
+      type="range"
+      id="micSensitivity"
+      [(ngModel)]="micSensitivity"
+      min="0"
+      max="1"
+      step="0.1"
+      (input)="onMicSensitivityChange($event)"
+    />
+  </div>
+
   <div class="main-controls">
     <button class="btn capture-btn" [class.active]="isCapturing" (click)="onToggleCapture()">
       {{ isCapturing ? 'Stop' : 'Start' }} Tuner
@@ -12,6 +25,8 @@
 
     <button class="btn session-btn stop" *ngIf="isRecording" (click)="onStopSession()">Stop Recording</button>
 
+    <button class="btn sessions-btn" (click)="toggleSessionsList()">Sessions</button>
+
     <button class="btn settings-btn" (click)="toggleSettings()">Settings</button>
   </div>
 
@@ -21,6 +36,57 @@
     <button class="btn cancel-btn" (click)="toggleSessionNameInput()">Cancel</button>
   </div>
 
+  <!-- Sessions List Panel -->
+  <div class="sessions-panel" *ngIf="showSessionsList">
+    <h3>Recorded Sessions</h3>
+
+    <div class="sessions-list" *ngIf="savedSessions.length > 0">
+      <div class="session-item" *ngFor="let session of savedSessions">
+        <div class="session-info">
+          <div class="session-name">{{ session.name }}</div>
+          <div class="session-date">{{ formatDate(session.createdAt) }}</div>
+          <div class="session-stats">
+            <span>{{ session.pitchRecordings.length }} recordings</span>
+            <span>{{ session.totalDuration / 1000 | number: '1.1-1' }}s</span>
+          </div>
+        </div>
+        <div class="session-actions">
+          <button
+            class="btn play-btn"
+            [disabled]="isPlayingSession && currentPlaybackSession?.id !== session.id"
+            (click)="onPlaySession(session.id)"
+          >
+            {{ isPlayingSession && currentPlaybackSession?.id === session.id ? 'Playing...' : 'Play' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-sessions" *ngIf="savedSessions.length === 0">
+      <p>No recorded sessions found.</p>
+    </div>
+
+    <div class="playback-controls" *ngIf="isPlayingSession && currentPlaybackSession">
+      <h4>Now Playing: {{ currentPlaybackSession.name }}</h4>
+      <div class="playback-buttons">
+        <button class="btn pause-btn" *ngIf="isPlayingSession" (click)="onPauseSessionPlayback()">Pause</button>
+        <button
+          class="btn resume-btn"
+          *ngIf="!isPlayingSession && currentPlaybackSession"
+          (click)="onResumeSessionPlayback()"
+        >
+          Resume
+        </button>
+        <button class="btn stop-btn" (click)="onStopSessionPlayback()">Stop</button>
+      </div>
+    </div>
+
+    <div class="sessions-actions">
+      <button class="btn close-btn" (click)="toggleSessionsList()">Close</button>
+    </div>
+  </div>
+
+  <!-- Settings Panel -->
   <div class="settings-panel" *ngIf="showSettings">
     <h3>Tuner Settings</h3>
 
@@ -51,6 +117,19 @@
     <div class="setting-group checkbox">
       <input type="checkbox" id="playTones" [(ngModel)]="playReferenceTones" />
       <label for="playTones">Play Reference Tones When In Tune</label>
+    </div>
+
+    <div class="setting-group">
+      <label for="micSensitivity">Input gain:</label>
+      <input
+        type="range"
+        id="micSensitivity"
+        [(ngModel)]="micSensitivity"
+        min="0"
+        max="1"
+        step="0.1"
+        (input)="onMicSensitivityChange($event)"
+      />
     </div>
 
     <div class="setting-group" *ngIf="playReferenceTones">
