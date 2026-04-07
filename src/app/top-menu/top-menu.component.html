@@ -7,17 +7,16 @@
     (mouseout)="menuState = 'closed'"
     (click)="menuState = 'closed'"
   >
-    <a class="page-title" routerLink="/" routerLinkActive="active">About Jakob</a>
+    <a class="page-title" routerLink="/" routerLinkActive="active">saxjax tuner</a>
     <nav class="main-menu-nav">
       <ul class="main-menu-nav__items">
+        <li class="main-menu-nav__item"><a routerLink="/tuner" routerLinkActive="active">tuner</a></li>
+        <li class="main-menu-nav__item"><a routerLink="/about" routerLinkActive="active">about</a></li>
         <li class="main-menu-nav__item"><a routerLink="/products" routerLinkActive="active">products</a></li>
-        <li class="main-menu-nav__item">
-          <a routerLink="/privacy-policy" routerLinkActive="active">privacy-policy</a>
-        </li>
         <li class="main-menu-nav__item"><a routerLink="/music" routerLinkActive="active">music</a></li>
-        <li class="main-menu-nav__item"><a routerLink="/programming" routerLinkActive="active">programming</a></li>
-        <li class="main-menu-nav__item"><a routerLink="/math" routerLinkActive="active">math</a></li>
-        <li class="main-menu-nav__item"><a routerLink="/jobs" routerLinkActive="active">jobs</a></li>
+        <li class="main-menu-nav__item">
+          <a routerLink="/privacy-policy" routerLinkActive="active">privacy</a>
+        </li>
       </ul>
     </nav>
   </div>

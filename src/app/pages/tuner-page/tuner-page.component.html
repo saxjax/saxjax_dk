@@ -1,0 +1,367 @@
+<div class="tuner-page" @routeTransition>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">saxjax tuner</h1>
+      <p class="hero__tagline">Your pitch. Your coach. Your gym.</p>
+      <p class="hero__subtitle">
+        {{ stats.exercises }} gamified exercises, AI coaching, and equipment diagnostics — in one practice platform.
+      </p>
+      <a class="hero__cta" [href]="appStoreUrl" target="_blank" rel="noopener noreferrer">
+        Start Your First Workout — Free
+      </a>
+    </div>
+    <div class="hero__phone">
+      <img
+        [src]="screenshots[0].src"
+        [alt]="screenshots[0].alt"
+        class="hero__phone-img"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="stats-bar__item">
+      <span class="stats-bar__number">{{ stats.exercises }}+</span>
+      <span class="stats-bar__label">Practice Exercises</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__number">{{ stats.algorithms }}</span>
+      <span class="stats-bar__label">Pitch Algorithms</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__number">{{ stats.instruments }}+</span>
+      <span class="stats-bar__label">Instrument Profiles</span>
+    </div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__number">{{ stats.levels }}</span>
+      <span class="stats-bar__label">Mastery Levels</span>
+    </div>
+  </section>
+
+  <!-- VALUE PROPOSITION -->
+  <section class="value">
+    <h2 class="section-title">Where Practice Gets Serious</h2>
+    <p class="section-subtitle">
+      Most tuners give you a needle and wish you luck. saxjax tuner tells you
+      <strong>why</strong> you're off, <strong>what</strong> to practice next,
+      and tracks whether it's actually working. It's the difference between
+      watching a gauge and having a coach in the room.
+    </p>
+    <div class="value__cards">
+      <div class="value__card">
+        <div class="value__icon">🧠</div>
+        <h3>AI Practice Coach</h3>
+        <p>
+          Samples your playing every 3 seconds and delivers real-time coaching.
+          Identifies weak notes, patterns, and builds your personalized drill plan.
+        </p>
+      </div>
+      <div class="value__card">
+        <div class="value__icon">🎮</div>
+        <h3>{{ stats.exercises }} Gamified Drills</h3>
+        <p>
+          From HUNT (find the note blind) to FORGE (stay centered under pressure) —
+          exercises that feel like gameplay, not homework.
+        </p>
+      </div>
+      <div class="value__card">
+        <div class="value__icon">🔧</div>
+        <h3>Equipment Diagnostics</h3>
+        <p>
+          Your pitch data tells a story most tuners ignore. saxjax reads the
+          patterns — detecting reed degradation, fatigue drift, and mechanical
+          issues before you notice them yourself.
+        </p>
+      </div>
+      <div class="value__card">
+        <div class="value__icon">📈</div>
+        <h3>Progress You Can Prove</h3>
+        <p>
+          Track your accuracy per note, per register, over weeks and months.
+          See exactly where you're improving, where you've plateaued, and what
+          to attack next.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOT SHOWCASE -->
+  <section class="showcase">
+    <h2 class="section-title">Your Practice Session, Dissected</h2>
+    <div class="showcase__viewer">
+      <div class="showcase__main">
+        <img
+          [src]="screenshots[activeScreenshot].src"
+          [alt]="screenshots[activeScreenshot].alt"
+          class="showcase__image"
+        />
+      </div>
+      <p class="showcase__caption">{{ screenshots[activeScreenshot].caption }}</p>
+      <div class="showcase__thumbs">
+        @for (shot of screenshots; track shot.src; let i = $index) {
+          <button
+            class="showcase__thumb"
+            [ngClass]="{ 'showcase__thumb--active': i === activeScreenshot }"
+            [attr.aria-label]="'View screenshot: ' + shot.alt"
+            (click)="selectScreenshot(i)"
+          >
+            <img [src]="shot.src" [alt]="shot.alt" loading="lazy" />
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCISE CATALOG -->
+  <section class="exercises">
+    <h2 class="section-title">The Practice Gym</h2>
+    <p class="section-subtitle">
+      {{ stats.exercises }} exercises across three tiers. Each one targets a specific skill —
+      pitch accuracy, ear training, dynamic control, register balance.
+      Pick one or let the AI coach assign your workout.
+    </p>
+
+    @if (coreExercises.length > 0) {
+      <h3 class="tier-title">🥋 Core — {{ coreExercises.length }} Exercises</h3>
+      <p class="tier-description">
+        Master the fundamentals: long tones, ear training, vibrato control, pitch stability, and chromatic balance.
+      </p>
+      <div class="exercise-grid">
+        @for (ex of coreExercises; track ex.id) {
+          <div class="exercise-card" [ngClass]="'exercise-card--' + ex.status">
+            <span class="exercise-card__icon">{{ ex.icon }}</span>
+            <div class="exercise-card__body">
+              <div class="exercise-card__header">
+                <span class="exercise-card__name">{{ ex.name }}</span>
+                @if (statusLabel(ex.status)) {
+                  <span class="exercise-card__badge" [ngClass]="'exercise-card__badge--' + ex.status">
+                    {{ statusLabel(ex.status) }}
+                  </span>
+                }
+              </div>
+              <span class="exercise-card__tagline">{{ ex.tagline }}</span>
+              <p class="exercise-card__desc">{{ ex.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (advancedExercises.length > 0) {
+      <h3 class="tier-title">🚀 Advanced — {{ advancedExercises.length }} Exercises</h3>
+      <p class="tier-description">
+        Complex drills for serious players: register transitions, portamento precision,
+        pattern decoding, and accuracy under fading feedback.
+      </p>
+      <div class="exercise-grid">
+        @for (ex of advancedExercises; track ex.id) {
+          <div class="exercise-card" [ngClass]="'exercise-card--' + ex.status">
+            <span class="exercise-card__icon">{{ ex.icon }}</span>
+            <div class="exercise-card__body">
+              <div class="exercise-card__header">
+                <span class="exercise-card__name">{{ ex.name }}</span>
+                @if (statusLabel(ex.status)) {
+                  <span class="exercise-card__badge" [ngClass]="'exercise-card__badge--' + ex.status">
+                    {{ statusLabel(ex.status) }}
+                  </span>
+                }
+              </div>
+              <span class="exercise-card__tagline">{{ ex.tagline }}</span>
+              <p class="exercise-card__desc">{{ ex.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (gameTheoryExercises.length > 0) {
+      <div class="world-first">
+        <span class="world-first__badge">WORLD FIRST</span>
+        <h3 class="tier-title">🎲 Game Theory — {{ gameTheoryExercises.length }} Exercises</h3>
+      </div>
+      <p class="tier-description">
+        The world's first practice drills powered by Nash equilibria, Pareto optimality,
+        and mechanism design — turning practice-time allocation into a solved game.
+      </p>
+      <div class="exercise-grid">
+        @for (ex of gameTheoryExercises; track ex.id) {
+          <div class="exercise-card" [ngClass]="'exercise-card--' + ex.status">
+            <span class="exercise-card__icon">{{ ex.icon }}</span>
+            <div class="exercise-card__body">
+              <div class="exercise-card__header">
+                <span class="exercise-card__name">{{ ex.name }}</span>
+                @if (statusLabel(ex.status)) {
+                  <span class="exercise-card__badge" [ngClass]="'exercise-card__badge--' + ex.status">
+                    {{ statusLabel(ex.status) }}
+                  </span>
+                }
+              </div>
+              <span class="exercise-card__tagline">{{ ex.tagline }}</span>
+              <p class="exercise-card__desc">{{ ex.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ALGORITHM CALLOUT -->
+  <section class="algorithms">
+    <div class="algorithms__content">
+      <span class="algorithms__number">5</span>
+      <div class="algorithms__text">
+        <h3>Pitch detection algorithms running under the hood.</h3>
+        <p>Because one size never fit every instrument. HPS, YIN, FFT, PitchTap, and more — each optimized for different registers and playing styles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2 class="section-title">Built Different, Down to the Engine</h2>
+
+    @if (intelligenceFeatures.length > 0) {
+      <h3 class="category-title">🧠 Practice Intelligence</h3>
+      <div class="feature-grid">
+        @for (feat of intelligenceFeatures; track feat.id) {
+          <div class="feature-card" [ngClass]="'feature-card--' + feat.status">
+            <span class="feature-card__icon">{{ feat.icon }}</span>
+            <div class="feature-card__body">
+              <div class="feature-card__header">
+                <span class="feature-card__name">{{ feat.name }}</span>
+                @if (statusLabel(feat.status)) {
+                  <span class="feature-card__badge" [ngClass]="'feature-card__badge--' + feat.status">{{ statusLabel(feat.status) }}</span>
+                }
+              </div>
+              <span class="feature-card__headline">{{ feat.headline }}</span>
+              <p class="feature-card__desc">{{ feat.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (tuningFeatures.length > 0) {
+      <h3 class="category-title">🎯 Precision Tuning</h3>
+      <div class="feature-grid">
+        @for (feat of tuningFeatures; track feat.id) {
+          <div class="feature-card" [ngClass]="'feature-card--' + feat.status">
+            <span class="feature-card__icon">{{ feat.icon }}</span>
+            <div class="feature-card__body">
+              <div class="feature-card__header">
+                <span class="feature-card__name">{{ feat.name }}</span>
+                @if (statusLabel(feat.status)) {
+                  <span class="feature-card__badge" [ngClass]="'feature-card__badge--' + feat.status">{{ statusLabel(feat.status) }}</span>
+                }
+              </div>
+              <span class="feature-card__headline">{{ feat.headline }}</span>
+              <p class="feature-card__desc">{{ feat.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (audioFeatures.length > 0) {
+      <h3 class="category-title">🎛️ Pro Audio</h3>
+      <div class="feature-grid">
+        @for (feat of audioFeatures; track feat.id) {
+          <div class="feature-card" [ngClass]="'feature-card--' + feat.status">
+            <span class="feature-card__icon">{{ feat.icon }}</span>
+            <div class="feature-card__body">
+              <div class="feature-card__header">
+                <span class="feature-card__name">{{ feat.name }}</span>
+                @if (statusLabel(feat.status)) {
+                  <span class="feature-card__badge" [ngClass]="'feature-card__badge--' + feat.status">{{ statusLabel(feat.status) }}</span>
+                }
+              </div>
+              <span class="feature-card__headline">{{ feat.headline }}</span>
+              <p class="feature-card__desc">{{ feat.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (analyticsFeatures.length > 0) {
+      <h3 class="category-title">📊 Analytics &amp; Progress</h3>
+      <div class="feature-grid">
+        @for (feat of analyticsFeatures; track feat.id) {
+          <div class="feature-card" [ngClass]="'feature-card--' + feat.status">
+            <span class="feature-card__icon">{{ feat.icon }}</span>
+            <div class="feature-card__body">
+              <div class="feature-card__header">
+                <span class="feature-card__name">{{ feat.name }}</span>
+                @if (statusLabel(feat.status)) {
+                  <span class="feature-card__badge" [ngClass]="'feature-card__badge--' + feat.status">{{ statusLabel(feat.status) }}</span>
+                }
+              </div>
+              <span class="feature-card__headline">{{ feat.headline }}</span>
+              <p class="feature-card__desc">{{ feat.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    @if (cloudFeatures.length > 0) {
+      <h3 class="category-title">☁️ Cloud &amp; Sync</h3>
+      <div class="feature-grid">
+        @for (feat of cloudFeatures; track feat.id) {
+          <div class="feature-card" [ngClass]="'feature-card--' + feat.status">
+            <span class="feature-card__icon">{{ feat.icon }}</span>
+            <div class="feature-card__body">
+              <div class="feature-card__header">
+                <span class="feature-card__name">{{ feat.name }}</span>
+                @if (statusLabel(feat.status)) {
+                  <span class="feature-card__badge" [ngClass]="'feature-card__badge--' + feat.status">{{ statusLabel(feat.status) }}</span>
+                }
+              </div>
+              <span class="feature-card__headline">{{ feat.headline }}</span>
+              <p class="feature-card__desc">{{ feat.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- BUILT BY -->
+  <section class="about">
+    <h2 class="section-title">Built by a Musician Who Ships Code</h2>
+    <div class="about__content">
+      <div class="about__text">
+        <p>
+          saxjax tuner is built by <strong>Jakob</strong> — a professional
+          saxophonist, multi-instrumentalist, and software engineer. He's played
+          the stages, sat through the long tones, and knows exactly which
+          problems a tuner should solve because he's lived them.
+        </p>
+        <p>
+          This isn't a tuner designed by engineers guessing what musicians need.
+          Every exercise, every detection algorithm, every coaching hint comes from
+          thousands of hours of real performance and practice. The result is a tuner
+          that knows the difference between a tired reed and a lazy embouchure.
+        </p>
+      </div>
+      <img
+        class="about__image"
+        src="assets/images/saxjax_tuner_on_stage.jpeg"
+        loading="lazy"
+        alt="Jakob performing with saxophone on stage"
+      />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2 class="cta__title">Your next practice session could be the first one that actually counts.</h2>
+    <p class="cta__subtitle">Free on the App Store · iPhone &amp; iPad</p>
+    <a class="cta__button" [href]="appStoreUrl" target="_blank" rel="noopener noreferrer">
+      Download saxjax tuner
+    </a>
+  </section>
+</div>

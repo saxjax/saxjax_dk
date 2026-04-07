@@ -16,8 +16,8 @@ main {
   }
 
   .content {
-    background-color: color.adjust(color-pallette.$background, $lightness: 20%);
-    height: 55vh;
+    background-color: #0f0f1a;
+    min-height: 55vh;
   }
 
   page-footer {

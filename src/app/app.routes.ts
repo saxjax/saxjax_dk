@@ -8,9 +8,12 @@ import { MathPageComponent } from './pages/math-page/math-page.component'
 import { JobsPageComponent } from './pages/jobs-page/jobs-page.component'
 import { NotioPageComponent } from './pages/notio-page/notio-page.component'
 import { NoviaPageComponent } from './pages/novia-page/novia-page.component'
+import { TunerPageComponent } from './pages/tuner-page/tuner-page.component'
 
 export const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: TunerPageComponent },
+  { path: 'tuner', component: TunerPageComponent },
+  { path: 'about', component: MainPageComponent },
   { path: 'music', component: MusicPageComponent },
   { path: 'products', component: ProductsPageComponent },
   { path: 'programming', component: ProgramingPageComponent },
