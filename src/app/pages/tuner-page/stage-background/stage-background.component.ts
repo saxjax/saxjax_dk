@@ -7,10 +7,89 @@ import { Component, DestroyRef, ElementRef, afterNextRender, inject, viewChild }
 })
 export class StageBackgroundComponent {
   readonly fogCanvas = viewChild<ElementRef<HTMLCanvasElement>>('fogCanvas')
+  readonly lightRigRef = viewChild<ElementRef<HTMLDivElement>>('lightRig')
   private readonly destroyRef = inject(DestroyRef)
 
   constructor() {
-    afterNextRender(() => this.initFog())
+    afterNextRender(() => {
+      this.initFog()
+      this.initLightRig()
+    })
+  }
+
+  /**
+   * 6-beam lighting rig arranged in a 3D half-circle arc.
+   * Outer beams are closer to the viewer (higher translateZ → larger via perspective).
+   * All beams sway gently at idle. On scroll they spread outward;
+   * when scroll stops they slowly converge back onto the content.
+   */
+  private initLightRig(): void {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const rig = this.lightRigRef()?.nativeElement
+    if (!rig) return
+    const beams = Array.from(rig.querySelectorAll<HTMLSpanElement>('.stage-bg__rig-beam'))
+    if (beams.length !== 6) return
+
+    // Per-beam config: [zOffset, focusedAngle, spreadDelta, swayAmp, swaySpeed, swayPhase, baseOpacity]
+    // Outer beams: more Z (closer), angled inward, spread away further, bigger sway
+    const configs = [
+      { z: 55, focus: 16, spread: -18, swayAmp: 2.8, swaySpd: 0.0007, phase: 0, op: 0.72 },
+      { z: 22, focus: 9, spread: -10, swayAmp: 2.0, swaySpd: 0.0009, phase: 1.2, op: 0.60 },
+      { z: 0, focus: 3, spread: -4, swayAmp: 1.4, swaySpd: 0.0011, phase: 2.5, op: 0.52 },
+      { z: 0, focus: -3, spread: 4, swayAmp: 1.4, swaySpd: 0.0010, phase: 3.8, op: 0.52 },
+      { z: 22, focus: -9, spread: 10, swayAmp: 2.0, swaySpd: 0.0008, phase: 5.1, op: 0.60 },
+      { z: 55, focus: -16, spread: 18, swayAmp: 2.8, swaySpd: 0.0006, phase: 0.7, op: 0.72 },
+    ]
+
+    let targetSpread = 0
+    let currentSpread = 0
+    let scrollTimer = 0
+    let rafId = 0
+    const SPREAD_IN_SPEED = 0.03 // slow return to focused
+    const SPREAD_OUT_SPEED = 0.08 // quick spread on scroll
+    const SCROLL_SETTLE_MS = 800 // ms after last scroll to start returning
+
+    const onScroll = () => {
+      targetSpread = 1
+      clearTimeout(scrollTimer)
+      scrollTimer = window.setTimeout(() => {
+        targetSpread = 0
+      }, SCROLL_SETTLE_MS)
+    }
+
+    const animate = (time: number) => {
+      // Lerp spread toward target (asymmetric speed)
+      const speed = targetSpread > currentSpread ? SPREAD_OUT_SPEED : SPREAD_IN_SPEED
+      const ds = targetSpread - currentSpread
+      if (Math.abs(ds) > 0.001) {
+        currentSpread += ds * speed
+      }
+
+      for (let i = 0; i < 6; i++) {
+        const c = configs[i]
+        const sway = Math.sin(time * c.swaySpd + c.phase) * c.swayAmp
+        const angle = c.focus + currentSpread * c.spread + sway
+        const opacity = c.op - currentSpread * 0.15 // dim slightly when spread
+        beams[i].style.transform = `translateZ(${c.z}px) rotate(${angle.toFixed(2)}deg)`
+        beams[i].style.opacity = Math.max(0.25, opacity).toFixed(3)
+      }
+
+      rafId = requestAnimationFrame(animate)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    const tunerPage = document.querySelector('.tuner-page')
+    tunerPage?.addEventListener('scroll', onScroll, { passive: true })
+
+    rafId = requestAnimationFrame(animate)
+
+    this.destroyRef.onDestroy(() => {
+      cancelAnimationFrame(rafId)
+      clearTimeout(scrollTimer)
+      window.removeEventListener('scroll', onScroll)
+      tunerPage?.removeEventListener('scroll', onScroll)
+    })
   }
 
   private initFog(): void {

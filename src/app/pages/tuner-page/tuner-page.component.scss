@@ -14,7 +14,7 @@ $surface: #0f0f1a;
 $surface-raised: #161625;
 $accent: cp.$blue-bg-4;
 $accent-glow: rgba(cp.$blue-bg-4, 0.2);
-$section-gap: 5rem;
+$section-gap: 6.5rem;
 $max-content: 1100px;
 
 // ── Page Container ───────────────────────────────────────────────
@@ -244,7 +244,6 @@ $max-content: 1100px;
 // ── Screenshot Showcase ──────────────────────────────────────────
 .showcase {
   padding: $section-gap 2rem;
-  background: rgba($surface-raised, 0.88);
   max-width: $max-content;
   margin: 0 auto;
 
@@ -516,7 +515,6 @@ $max-content: 1100px;
   padding: $section-gap 2rem;
   max-width: $max-content;
   margin: 0 auto;
-  background: rgba($surface-raised, 0.88);
 }
 
 .category-title {

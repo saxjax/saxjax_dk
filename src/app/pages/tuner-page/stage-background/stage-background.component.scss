@@ -251,71 +251,43 @@ $vignette-soft: rgba(5, 5, 8, 0.24);
   animation: stage-smoke-drift-c 61s ease-in-out infinite alternate;
 }
 
-// ── Spotlights ──────────────────────────────────────────────────
-.stage-bg__spotlights {
+// ── 3D Lighting Rig ─────────────────────────────────────────────
+//  6 beams in a half-circle arc bending toward the viewer.
+//  Outer beams have positive translateZ → perspective makes them larger.
+//  All rotation, sway, and spread driven by JS via rAF.
+.stage-bg__rig {
   z-index: 3;
-  overflow: hidden;
-
-  &::before,
-  &::after,
-  .stage-bg__beam {
-    position: absolute;
-    top: -16vh;
-    display: block;
-    height: 110vh;
-    transform-origin: 50% 0%;
-    clip-path: polygon(50% 0%, 42% 5%, 0% 100%, 100% 100%, 58% 5%);
-    background: linear-gradient(
-      180deg,
-      rgba($stage-green-bright, 0.09) 0%,
-      rgba($stage-green, 0.065) 20%,
-      rgba($stage-green, 0.03) 55%,
-      rgba($stage-green, 0) 100%
-    );
-    opacity: 0.85;
-    transform: translate3d(0, 0, 0);
-  }
-
-  &::before,
-  &::after {
-    content: '';
-  }
-
-  &::before {
-    left: -6%;
-    width: 34vw;
-    animation: stage-beam-sway-a 15s ease-in-out infinite;
-  }
-
-  &::after {
-    left: 18%;
-    width: 36vw;
-    opacity: 0.7;
-    animation: stage-beam-sway-b 23s ease-in-out infinite;
-  }
+  perspective: 600px;
+  perspective-origin: 50% 0%;
+  pointer-events: none;
 }
 
-.stage-bg__beam:nth-child(1) {
-  left: 42%;
-  width: 32vw;
-  opacity: 0.76;
-  animation: stage-beam-sway-c 19s ease-in-out infinite;
+.stage-bg__rig-beam {
+  position: absolute;
+  top: -8vh;
+  display: block;
+  width: 26vw;
+  height: 120vh;
+  transform-origin: 50% 0%;
+  clip-path: polygon(50% 0%, 40% 5%, 12% 100%, 88% 100%, 60% 5%);
+  background: linear-gradient(
+    180deg,
+    rgba($stage-green-bright, 0.09) 0%,
+    rgba($stage-green, 0.06) 18%,
+    rgba($stage-green, 0.025) 50%,
+    rgba($stage-green, 0) 100%
+  );
+  opacity: 0.65;
+  // per-beam transform driven entirely by JS
 }
 
-.stage-bg__beam:nth-child(2) {
-  left: 68%;
-  width: 34vw;
-  opacity: 0.6;
-  animation: stage-beam-sway-d 27s ease-in-out infinite;
-}
-
-.stage-bg__beam:nth-child(3) {
-  left: 88%;
-  width: 28vw;
-  opacity: 0.5;
-  animation: stage-beam-sway-a 21s ease-in-out infinite;
-  animation-delay: -7s;
-}
+// Static horizontal positions — JS adds 3D transforms on top
+.stage-bg__rig-beam:nth-child(1) { left: -2%; }
+.stage-bg__rig-beam:nth-child(2) { left: 14%; }
+.stage-bg__rig-beam:nth-child(3) { left: 32%; }
+.stage-bg__rig-beam:nth-child(4) { left: 52%; }
+.stage-bg__rig-beam:nth-child(5) { left: 68%; }
+.stage-bg__rig-beam:nth-child(6) { left: 84%; }
 
 // ── Light Particles / Bokeh ─────────────────────────────────────
 .stage-bg__particles {
@@ -393,18 +365,15 @@ $vignette-soft: rgba(5, 5, 8, 0.24);
 
 // ── Responsive ──────────────────────────────────────────────────
 @media (max-width: 768px) {
-  .stage-bg__spotlights::after,
-  .stage-bg__beam:nth-child(2),
-  .stage-bg__beam:nth-child(3),
+  .stage-bg__rig-beam:nth-child(2),
+  .stage-bg__rig-beam:nth-child(5),
   .stage-bg__particle:nth-child(5) {
     display: none;
   }
 
-  .stage-bg__spotlights::before,
-  .stage-bg__beam:nth-child(1) {
-    height: 96vh;
-    width: 50vw;
-    opacity: 0.6;
+  .stage-bg__rig-beam {
+    width: 36vw;
+    height: 100vh;
   }
 
   .stage-bg__haze::before {
@@ -436,9 +405,7 @@ $vignette-soft: rgba(5, 5, 8, 0.24);
   .stage-bg__haze::before,
   .stage-bg__haze::after,
   .stage-bg__haze-patch,
-  .stage-bg__spotlights::before,
-  .stage-bg__spotlights::after,
-  .stage-bg__beam,
+  .stage-bg__rig-beam,
   .stage-bg__particle,
   .stage-bg__instrument {
     animation: none;
@@ -522,58 +489,6 @@ $vignette-soft: rgba(5, 5, 8, 0.24);
   100% {
     transform: translate3d(6vw, 1vh, 0) scale(1.1);
     opacity: 0.26;
-  }
-}
-
-@keyframes stage-beam-sway-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-7deg) scaleY(1);
-    opacity: 0.4;
-  }
-
-  50% {
-    transform: translate3d(1vw, 0, 0) rotate(-2deg) scaleY(1.04);
-    opacity: 0.72;
-  }
-}
-
-@keyframes stage-beam-sway-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-1deg) scaleY(1);
-    opacity: 0.34;
-  }
-
-  50% {
-    transform: translate3d(-1vw, 0, 0) rotate(4deg) scaleY(1.03);
-    opacity: 0.64;
-  }
-}
-
-@keyframes stage-beam-sway-c {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(5deg) scaleY(1);
-    opacity: 0.42;
-  }
-
-  50% {
-    transform: translate3d(0.8vw, 0, 0) rotate(0deg) scaleY(1.05);
-    opacity: 0.74;
-  }
-}
-
-@keyframes stage-beam-sway-d {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(8deg) scaleY(1);
-    opacity: 0.3;
-  }
-
-  50% {
-    transform: translate3d(-0.8vw, 0, 0) rotate(3deg) scaleY(1.03);
-    opacity: 0.58;
   }
 }
 
