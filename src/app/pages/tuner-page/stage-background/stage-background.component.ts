@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  afterNextRender,
-  viewChild,
-  DestroyRef,
-  inject,
-} from '@angular/core'
+import { Component, DestroyRef, ElementRef, afterNextRender, inject, viewChild } from '@angular/core'
 
 @Component({
   selector: 'stage-background',
@@ -65,9 +58,13 @@ export class StageBackgroundComponent {
       const v = fade(yf)
       const a = perm[(xi & 255) + perm[yi & 255]]
       const b = perm[((xi + 1) & 255) + perm[yi & 255]]
-      const c = perm[(xi & 255) + perm[((yi + 1) & 255)]]
-      const d = perm[((xi + 1) & 255) + perm[((yi + 1) & 255)]]
-      return lerp(lerp(grad(a, xf, yf), grad(b, xf - 1, yf), u), lerp(grad(c, xf, yf - 1), grad(d, xf - 1, yf - 1), u), v)
+      const c = perm[(xi & 255) + perm[(yi + 1) & 255]]
+      const d = perm[((xi + 1) & 255) + perm[(yi + 1) & 255]]
+      return lerp(
+        lerp(grad(a, xf, yf), grad(b, xf - 1, yf), u),
+        lerp(grad(c, xf, yf - 1), grad(d, xf - 1, yf - 1), u),
+        v
+      )
     }
 
     // Fractal brownian motion
@@ -97,8 +94,8 @@ export class StageBackgroundComponent {
 
       for (let iy = 0; iy < rows; iy++) {
         for (let ix = 0; ix < cols; ix++) {
-          const nx = ix / cols * 3 + t * 0.4
-          const ny = iy / rows * 2 + t * 0.15
+          const nx = (ix / cols) * 3 + t * 0.4
+          const ny = (iy / rows) * 2 + t * 0.15
           const v = fbm(nx, ny, 3) * 0.5 + 0.5 // 0-1
 
           // Very subtle: max alpha ~0.045
