@@ -1,6 +1,7 @@
-import { Component } from '@angular/core'
 import { NgClass } from '@angular/common'
+import { Component } from '@angular/core'
 import { routeTransition } from '../../animations/route-transition'
+import { StageBackgroundComponent } from './stage-background/stage-background.component'
 import {
   exercisesByTier,
   featuresByCategory,
@@ -14,7 +15,7 @@ import {
   selector: 'tuner-page',
   templateUrl: './tuner-page.component.html',
   styleUrl: './tuner-page.component.scss',
-  imports: [NgClass],
+  imports: [NgClass, StageBackgroundComponent],
   animations: [routeTransition],
 })
 export class TunerPageComponent {
@@ -41,10 +42,26 @@ export class TunerPageComponent {
   }
 
   readonly screenshots = [
-    { src: 'assets/images/screenshots/tuner-main.png', alt: 'Chromatic tuner view showing twelve note lanes with real-time pitch detection', caption: 'Twelve chromatic lanes show every note in real time — pitch accuracy you can actually read.' },
-    { src: 'assets/images/screenshots/hunt-exercise.png', alt: 'Hunt ear-training exercise showing hidden target note with scoring', caption: 'HUNT: find and lock the hidden target note using nothing but your ears.' },
-    { src: 'assets/images/screenshots/hunt-gameplay.png', alt: 'Hunt exercise gameplay with real-time scoring and adaptive difficulty', caption: 'Real-time scoring, adaptive difficulty, and ML-targeted note selection.' },
-    { src: 'assets/images/screenshots/audio-mixer.png', alt: 'Audio mixer control panel with input faders and device profiles', caption: 'DAW-style floating mixer with input/output faders and per-device mic profiles.' },
+    {
+      src: 'assets/images/screenshots/tuner-main.png',
+      alt: 'Chromatic tuner view showing twelve note lanes with real-time pitch detection',
+      caption: 'Twelve chromatic lanes show every note in real time — pitch accuracy you can actually read.',
+    },
+    {
+      src: 'assets/images/screenshots/hunt-exercise.png',
+      alt: 'Hunt ear-training exercise showing hidden target note with scoring',
+      caption: 'HUNT: find and lock the hidden target note using nothing but your ears.',
+    },
+    {
+      src: 'assets/images/screenshots/hunt-gameplay.png',
+      alt: 'Hunt exercise gameplay with real-time scoring and adaptive difficulty',
+      caption: 'Real-time scoring, adaptive difficulty, and ML-targeted note selection.',
+    },
+    {
+      src: 'assets/images/screenshots/audio-mixer.png',
+      alt: 'Audio mixer control panel with input faders and device profiles',
+      caption: 'DAW-style floating mixer with input/output faders and per-device mic profiles.',
+    },
   ]
 
   activeScreenshot = 0

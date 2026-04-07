@@ -19,10 +19,18 @@ $max-content: 1100px;
 
 // ── Page Container ───────────────────────────────────────────────
 .tuner-page {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   color: $text-primary;
   line-height: 1.6;
-  background: $surface;
+  background: transparent;
+  position: relative;
+  z-index: 1;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
@@ -51,7 +59,7 @@ $max-content: 1100px;
 
 // ── Hero ─────────────────────────────────────────────────────────
 .hero {
-  background: linear-gradient(160deg, #0a0a1a 0%, cp.$blue-bg-1 50%, #0a0a1a 100%);
+  background: transparent;
   padding: 5rem 2rem 3rem;
   display: flex;
   align-items: center;
@@ -69,7 +77,7 @@ $max-content: 1100px;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(ellipse at 30% 50%, rgba(cp.$blue-bg-4, 0.08) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 30% 50%, rgba(cp.$blue-bg-4, 0.05) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -116,7 +124,9 @@ $max-content: 1100px;
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 0.01em;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     box-shadow: 0 4px 20px rgba(cp.$blue-bg-4, 0.3);
 
     &:hover {
@@ -134,7 +144,9 @@ $max-content: 1100px;
     width: 260px;
     height: auto;
     border-radius: $radius-lg;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(cp.$blue-bg-4, 0.1);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(cp.$blue-bg-4, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
@@ -143,7 +155,7 @@ $max-content: 1100px;
 .stats-bar {
   display: flex;
   justify-content: space-around;
-  background: $surface-raised;
+  background: rgba($surface-raised, 0.85);
   border-top: 1px solid $card-border;
   border-bottom: 1px solid $card-border;
   padding: 1.8rem 1rem;
@@ -193,7 +205,9 @@ $max-content: 1100px;
     border: 1px solid $card-border;
     border-radius: $radius;
     padding: 2rem 1.6rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       transform: translateY(-3px);
@@ -230,7 +244,7 @@ $max-content: 1100px;
 // ── Screenshot Showcase ──────────────────────────────────────────
 .showcase {
   padding: $section-gap 2rem;
-  background: $surface-raised;
+  background: rgba($surface-raised, 0.88);
   max-width: $max-content;
   margin: 0 auto;
 
@@ -355,8 +369,13 @@ $max-content: 1100px;
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.85; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .exercise-grid {
@@ -375,15 +394,22 @@ $max-content: 1100px;
   border-radius: $radius;
   padding: 1.1rem;
   border-left: 3px solid $accent;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
 
   &:hover {
     transform: translateY(-2px);
     background: $card-bg-hover;
   }
 
-  &--beta { border-left-color: cp.$purple-bg-3; }
-  &--coming-soon { border-left-color: cp.$yellow-bg-1; opacity: 0.6; }
+  &--beta {
+    border-left-color: cp.$purple-bg-3;
+  }
+  &--coming-soon {
+    border-left-color: cp.$yellow-bg-1;
+    opacity: 0.6;
+  }
 
   &__icon {
     font-size: 1.6rem;
@@ -391,7 +417,9 @@ $max-content: 1100px;
     margin-top: 0.1rem;
   }
 
-  &__body { min-width: 0; }
+  &__body {
+    min-width: 0;
+  }
 
   &__header {
     display: flex;
@@ -445,7 +473,7 @@ $max-content: 1100px;
 // ── Algorithm Callout ────────────────────────────────────────────
 .algorithms {
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, cp.$blue-bg-1, cp.$blue-bg-2);
+  background: linear-gradient(135deg, rgba(cp.$blue-bg-1, 0.9), rgba(cp.$blue-bg-2, 0.9));
   max-width: $max-content;
   margin: 0 auto;
 
@@ -488,7 +516,7 @@ $max-content: 1100px;
   padding: $section-gap 2rem;
   max-width: $max-content;
   margin: 0 auto;
-  background: $surface-raised;
+  background: rgba($surface-raised, 0.88);
 }
 
 .category-title {
@@ -521,8 +549,13 @@ $max-content: 1100px;
     background: $card-bg-hover;
   }
 
-  &--beta { border-left-color: cp.$purple-bg-3; }
-  &--coming-soon { border-left-color: cp.$yellow-bg-1; opacity: 0.6; }
+  &--beta {
+    border-left-color: cp.$purple-bg-3;
+  }
+  &--coming-soon {
+    border-left-color: cp.$yellow-bg-1;
+    opacity: 0.6;
+  }
 
   &__icon {
     font-size: 1.6rem;
@@ -530,7 +563,9 @@ $max-content: 1100px;
     margin-top: 0.1rem;
   }
 
-  &__body { min-width: 0; }
+  &__body {
+    min-width: 0;
+  }
 
   &__header {
     display: flex;
@@ -623,7 +658,7 @@ $max-content: 1100px;
 
 // ── CTA Section ──────────────────────────────────────────────────
 .cta {
-  background: linear-gradient(160deg, cp.$blue-bg-1 0%, #0a0a1a 100%);
+  background: linear-gradient(160deg, rgba(cp.$blue-bg-1, 0.85) 0%, rgba(#0a0a1a, 0.85) 100%);
   text-align: center;
   padding: 4rem 2rem;
   max-width: $max-content;
@@ -656,7 +691,9 @@ $max-content: 1100px;
     font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     box-shadow: 0 4px 20px rgba(cp.$blue-bg-4, 0.3);
 
     &:hover {
@@ -674,14 +711,24 @@ $max-content: 1100px;
     padding: 3rem 1.5rem 2rem;
     gap: 2rem;
 
-    &__title { font-size: 2.6rem; }
-    &__tagline { font-size: 1.3rem; }
-    &__phone-img { width: 200px; }
+    &__title {
+      font-size: 2.6rem;
+    }
+    &__tagline {
+      font-size: 1.3rem;
+    }
+    &__phone-img {
+      width: 200px;
+    }
   }
 
-  .section-title { font-size: 1.8rem; }
+  .section-title {
+    font-size: 1.8rem;
+  }
 
-  .value__cards { grid-template-columns: 1fr; }
+  .value__cards {
+    grid-template-columns: 1fr;
+  }
 
   .stats-bar {
     gap: 1rem;
@@ -693,19 +740,25 @@ $max-content: 1100px;
     text-align: center;
   }
 
-  .algorithms__number { font-size: 3.5rem; }
+  .algorithms__number {
+    font-size: 3.5rem;
+  }
 
   .about__content {
     flex-direction: column;
     text-align: center;
   }
 
-  .about__image { margin: 0 auto; }
+  .about__image {
+    margin: 0 auto;
+  }
 
   .showcase__thumb {
     width: 56px;
     height: 56px;
   }
 
-  .cta__title { font-size: 1.4rem; }
+  .cta__title {
+    font-size: 1.4rem;
+  }
 }
