@@ -35,10 +35,10 @@ export class StageBackgroundComponent {
     // Outer beams: more Z (closer), angled inward, spread away further, bigger sway
     const configs = [
       { z: 55, focus: 16, spread: -18, swayAmp: 2.8, swaySpd: 0.0007, phase: 0, op: 0.72 },
-      { z: 22, focus: 9, spread: -10, swayAmp: 2.0, swaySpd: 0.0009, phase: 1.2, op: 0.60 },
+      { z: 22, focus: 9, spread: -10, swayAmp: 2.0, swaySpd: 0.0009, phase: 1.2, op: 0.6 },
       { z: 0, focus: 3, spread: -4, swayAmp: 1.4, swaySpd: 0.0011, phase: 2.5, op: 0.52 },
-      { z: 0, focus: -3, spread: 4, swayAmp: 1.4, swaySpd: 0.0010, phase: 3.8, op: 0.52 },
-      { z: 22, focus: -9, spread: 10, swayAmp: 2.0, swaySpd: 0.0008, phase: 5.1, op: 0.60 },
+      { z: 0, focus: -3, spread: 4, swayAmp: 1.4, swaySpd: 0.001, phase: 3.8, op: 0.52 },
+      { z: 22, focus: -9, spread: 10, swayAmp: 2.0, swaySpd: 0.0008, phase: 5.1, op: 0.6 },
       { z: 55, focus: -16, spread: 18, swayAmp: 2.8, swaySpd: 0.0006, phase: 0.7, op: 0.72 },
     ]
 
