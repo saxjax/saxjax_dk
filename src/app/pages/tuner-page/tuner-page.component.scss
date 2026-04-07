@@ -50,7 +50,7 @@ $max-content: 1100px;
 
 .section-subtitle {
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1.1875rem;
   color: $text-secondary;
   max-width: 640px;
   margin: 0 auto 2.5rem;
@@ -108,7 +108,7 @@ $max-content: 1100px;
   }
 
   &__subtitle {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
     color: $text-muted;
     margin: 0 0 2rem;
     line-height: 1.6;
@@ -178,7 +178,7 @@ $max-content: 1100px;
   }
 
   &__label {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: $text-muted;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -222,7 +222,7 @@ $max-content: 1100px;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: 1.0625rem;
       color: $text-secondary;
       margin: 0;
       line-height: 1.6;
@@ -273,7 +273,7 @@ $max-content: 1100px;
 
   &__caption {
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
     color: $text-secondary;
     font-style: italic;
     margin: 1.2rem 0;
@@ -336,7 +336,7 @@ $max-content: 1100px;
 }
 
 .tier-description {
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   color: $text-secondary;
   margin: 0 0 1.2rem;
 }
@@ -351,7 +351,7 @@ $max-content: 1100px;
     display: inline-block;
     background: linear-gradient(135deg, #f59e0b, #ef4444);
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 900;
     padding: 0.3rem 0.7rem;
     border-radius: 4px;
@@ -428,16 +428,16 @@ $max-content: 1100px;
   }
 
   &__name {
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     color: $text-primary;
   }
 
   &__badge {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 0.1rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 3px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -454,7 +454,7 @@ $max-content: 1100px;
   }
 
   &__tagline {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     color: $accent;
     display: block;
@@ -462,10 +462,10 @@ $max-content: 1100px;
   }
 
   &__desc {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: $text-secondary;
     margin: 0.2rem 0 0;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }
 
@@ -502,7 +502,7 @@ $max-content: 1100px;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: 1.0625rem;
       color: rgba(255, 255, 255, 0.7);
       margin: 0;
       line-height: 1.5;
@@ -518,7 +518,7 @@ $max-content: 1100px;
 }
 
 .category-title {
-  font-size: 1.3rem;
+  font-size: 1.375rem;
   font-weight: 700;
   margin: 2rem 0 1rem;
   color: $text-primary;
@@ -573,15 +573,15 @@ $max-content: 1100px;
   }
 
   &__name {
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
     font-weight: 700;
     color: $text-primary;
   }
 
   &__badge {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 0.1rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 3px;
     text-transform: uppercase;
 
@@ -597,7 +597,7 @@ $max-content: 1100px;
   }
 
   &__headline {
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 600;
     color: cp.$green-bg-4;
     display: block;
@@ -605,10 +605,10 @@ $max-content: 1100px;
   }
 
   &__desc {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: $text-secondary;
     margin: 0.2rem 0 0;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }
 
@@ -632,7 +632,7 @@ $max-content: 1100px;
     min-width: 280px;
 
     p {
-      font-size: 1.05rem;
+      font-size: 1.0625rem;
       color: $text-secondary;
       margin: 0 0 1rem;
       line-height: 1.7;
@@ -675,7 +675,7 @@ $max-content: 1100px;
   }
 
   &__subtitle {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     color: $text-muted;
     margin: 0 0 2rem;
   }
