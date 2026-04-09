@@ -57,6 +57,112 @@ main {
   width: 66.6%;
 }
 
+/* Homepage: How-to section polish */
+.howto-shell {
+  position: relative;
+}
+
+.howto-shell::before {
+  content: '';
+  position: absolute;
+  inset: 6rem 1rem auto;
+  height: 16rem;
+  background:
+    radial-gradient(30rem 11rem at 15% 50%, rgba(0, 128, 255, 0.14), transparent 70%),
+    radial-gradient(26rem 10rem at 85% 50%, rgba(0, 166, 90, 0.14), transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.howto-shell .section-title,
+.howto-shell .section-subtitle,
+.howto-shell .value__cards {
+  position: relative;
+  z-index: 1;
+}
+
+.howto-subtitle {
+  animation: howto-fade-up 600ms ease-out both;
+}
+
+.howto-card {
+  animation: howto-fade-up 700ms ease-out both;
+  border-top: 2px solid rgba(0, 128, 255, 0.35);
+}
+
+.howto-card--swipes {
+  animation-delay: 90ms;
+}
+
+.howto-card--tools {
+  animation-delay: 180ms;
+}
+
+@keyframes howto-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .howto-shell::before {
+    inset: 4rem 0 auto;
+    height: 12rem;
+  }
+}
+
+.qa-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.6rem;
+  height: 2.1rem;
+  margin-right: 0.5rem;
+  padding: 0 0.45rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(22, 22, 37, 0.9);
+  color: #d9edf7;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.qa-icon--kammertone,
+.qa-icon--tolerance,
+.qa-icon--transpose,
+.qa-icon--interval {
+  border-color: rgba(0, 128, 255, 0.5);
+}
+
+.qa-icon--history {
+  border-color: rgba(0, 166, 90, 0.5);
+}
+
+.qa-icon--sound {
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.qa-icon--analytics,
+.qa-icon--journey {
+  border-color: rgba(0, 166, 90, 0.45);
+  background: linear-gradient(180deg, rgba(22, 22, 37, 0.96), rgba(13, 20, 16, 0.92));
+}
+
+.qa-icon--ml {
+  border-color: rgba(149, 102, 255, 0.55);
+  background: linear-gradient(135deg, rgba(42, 47, 80, 0.95), rgba(36, 28, 64, 0.95));
+}
+
 // .flex{
 //   display: flex;
 //   flex-direction: column;

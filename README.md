@@ -28,6 +28,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Upload to homepage
 
+### Privacy policy URL for Apple submissions
+
+Use this permanent URL in App Store Connect:
+
+https://saxjax.dk/privacy-policy.html
+
 ### Only to confirm setup and select remote folder:
 
 F1 -> ftp-simple: Config, check that config is ok

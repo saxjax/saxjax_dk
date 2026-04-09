@@ -9,7 +9,7 @@
         {{ stats.exercises }} gamified exercises, AI coaching, and equipment diagnostics — in one practice platform.
       </p>
       <a class="hero__cta" [href]="appStoreUrl" target="_blank" rel="noopener noreferrer">
-        Start Your First Workout — Free
+        Start Your First Workout
       </a>
     </div>
     <div class="hero__phone">
@@ -105,6 +105,65 @@
           </button>
         }
       </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="value howto-shell">
+    <h2 class="section-title">How To Use saxjax tuner</h2>
+    <p class="section-subtitle howto-subtitle">
+      Built from the real interaction flow inside the app: gestures for navigation, timeline control, and targeted
+      playback review.
+    </p>
+
+    <div class="value__cards">
+      <article class="value__card howto-card howto-card--start">
+        <h3>Quick Start</h3>
+        <ol>
+          @for (step of quickStartSteps; track step.title) {
+            <li>
+              <strong>{{ step.title }}</strong>
+              <p>{{ step.detail }}</p>
+            </li>
+          }
+        </ol>
+      </article>
+
+      <article class="value__card howto-card howto-card--swipes">
+        <h3>Swipe Controls</h3>
+        <ul>
+          @for (item of swipeActions; track item.gesture) {
+            <li>
+              <strong>{{ item.gesture }}:</strong>
+              {{ item.action }}
+            </li>
+          }
+        </ul>
+      </article>
+
+      <article class="value__card howto-card howto-card--tools">
+        <h3>What You Can Do</h3>
+        <ul>
+          @for (item of capabilityHighlights; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </article>
+
+      <article class="value__card howto-card">
+        <h3>Quick View Icons</h3>
+        <ul>
+          @for (item of quickViewIcons; track item.name) {
+            <li>
+              <strong>
+                <span class="qa-icon" [ngClass]="'qa-icon--' + item.key">{{ item.mark }}</span>
+                {{ item.name }}:
+              </strong>
+              {{ item.action }}
+            </li>
+          }
+        </ul>
+      </article>
     </div>
   </section>
 
@@ -336,18 +395,17 @@
 
   <!-- BUILT BY -->
   <section class="about">
-    <h2 class="section-title">Built by a Musician Who Ships Code</h2>
+    <h2 class="section-title">Built by a Musician and Software Engineer</h2>
     <div class="about__content">
       <div class="about__text">
         <p>
-          saxjax tuner is built by <strong>Jakob</strong> — a professional saxophonist, multi-instrumentalist, and
-          software engineer. He's played the stages, sat through the long tones, and knows exactly which problems a
-          tuner should solve because he's lived them.
+          Saxjax Tuner is built by <strong>Jakob</strong>, a professional saxophonist and software engineer. The app is
+          shaped by practical experience from rehearsal rooms, lessons, and live performance.
         </p>
         <p>
-          This isn't a tuner designed by engineers guessing what musicians need. Every exercise, every detection
-          algorithm, every coaching hint comes from thousands of hours of real performance and practice. The result is a
-          tuner that knows the difference between a tired reed and a lazy embouchure.
+          Every exercise, detection algorithm, and coaching recommendation is designed to solve concrete intonation
+          challenges musicians face in daily practice. The goal is straightforward: reliable feedback, focused
+          training, and measurable progress.
         </p>
       </div>
       <img
@@ -362,7 +420,13 @@
   <!-- CTA -->
   <section class="cta">
     <h2 class="cta__title">Your next practice session could be the first one that actually counts.</h2>
-    <p class="cta__subtitle">Free on the App Store · iPhone &amp; iPad</p>
+    <p class="cta__subtitle">Available on the App Store · iPhone &amp; iPad</p>
     <a class="cta__button" [href]="appStoreUrl" target="_blank" rel="noopener noreferrer"> Download saxjax tuner </a>
   </section>
+
+  <div class="cta-privacy">
+    <a class="cta-privacy__link" href="/privacy-policy.html" target="_blank" rel="noopener noreferrer">
+      Privacy Declaration
+    </a>
+  </div>
 </div>
