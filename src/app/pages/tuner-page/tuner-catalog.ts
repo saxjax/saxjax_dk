@@ -7,7 +7,7 @@
 
 // ── Exercise Status ──────────────────────────────────────────────
 
-export type ExerciseStatus = 'released' | 'beta' | 'coming-soon' | 'hidden'
+export type ExerciseStatus = 'verified' | 'experimental' | 'aspiring' | 'coming-soon' | 'hidden'
 
 export interface Exercise {
   id: string
@@ -43,7 +43,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Lock the first attack',
     description: 'Single-note long tones — nail your pitch from the very first moment.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '🎯',
   },
   {
@@ -52,7 +52,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Match ghost curves',
     description: 'Replay a previous intonation curve and try to match it exactly.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '🪞',
   },
   {
@@ -61,7 +61,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Heal weak notes',
     description: 'AI identifies your weakest notes and builds a targeted training zone.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '🥋',
   },
   {
@@ -70,16 +70,16 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Beat-synced pitch',
     description: 'Control your intonation in rhythm — pitch accuracy meets timing.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '💓',
   },
   {
     id: 'hunt',
     name: 'HUNT',
     tagline: 'Find the note blind',
-    description: 'Ear-training game — find and hold the hidden target note using only your ears.',
+    description: 'The app plays a mystery tone — you hear it, find it on your instrument, and hold it in tune to confirm. No note names, no visual hints. Scores your approach, hold quality, and search speed. Adapts difficulty from 4 to 12 targets and prioritises your historically weakest notes.',
     tier: 'core',
-    status: 'released',
+    status: 'verified',
     icon: '🔍',
   },
   {
@@ -88,7 +88,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Sustain stability',
     description: 'Hold a perfectly centered pitch as long as possible without wandering.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '🌊',
   },
   {
@@ -97,7 +97,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Center under pressure',
     description: 'Stay in tune while the heat rises — the longer you hold, the hotter it gets.',
     tier: 'core',
-    status: 'released',
+    status: 'aspiring',
     icon: '🔥',
   },
   {
@@ -106,7 +106,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Fast target practice',
     description: 'Rapid-fire weak note targeting — hit as many problem notes as you can.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '⚡',
   },
   {
@@ -115,7 +115,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Beat your history',
     description: 'A/B comparison against your own past performance.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '📡',
   },
   {
@@ -124,7 +124,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Balance all notes',
     description: 'Even out your deviation across the full chromatic spectrum.',
     tier: 'core',
-    status: 'released',
+    status: 'aspiring',
     icon: '🔮',
   },
   {
@@ -133,7 +133,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Vibrato control',
     description: 'Master vibrato depth and speed with real-time visual feedback.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '〰️',
   },
   {
@@ -142,7 +142,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Multi-lane consistency',
     description: 'Build consistency across multiple note lanes simultaneously.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '📊',
   },
   {
@@ -151,7 +151,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Session inspection',
     description: 'Diagnostic awareness — inspect your whole session for patterns.',
     tier: 'core',
-    status: 'released',
+    status: 'experimental',
     icon: '🔬',
   },
 
@@ -162,7 +162,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Fight the pull',
     description: 'Resist pitch gravity while notes try to pull you off center.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'aspiring',
     icon: '🌑',
   },
   {
@@ -171,7 +171,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Zoom into detail',
     description: 'Progressive zoom into finer and finer cent accuracy.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🔭',
   },
   {
@@ -180,7 +180,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Connect the pitches',
     description: 'Navigate a star map of notes — connect them in tune.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'aspiring',
     icon: '✨',
   },
   {
@@ -189,7 +189,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Rise and fall',
     description: 'Control crescendo/diminuendo while maintaining perfect pitch.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🌙',
   },
   {
@@ -198,7 +198,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Grow your tone',
     description: 'Expand from a single note into rich, stable resonance.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'aspiring',
     icon: '🌸',
   },
   {
@@ -207,7 +207,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Climb the registers',
     description: 'Maintain intonation accuracy as you move through registers.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🏔️',
   },
   {
@@ -216,7 +216,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Interleave patterns',
     description: 'Weave between notes in complex melodic patterns.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🧵',
   },
   {
@@ -225,7 +225,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Explosive control',
     description: 'Master dramatic dynamic shifts without losing pitch center.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🌋',
   },
   {
@@ -234,7 +234,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Find true north',
     description: 'Navigate interval relationships with directional precision.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🧭',
   },
   {
@@ -243,7 +243,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Uncover patterns',
     description: 'Dig into your practice history to find buried habit patterns.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🦴',
   },
   {
@@ -252,7 +252,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Navigate landscapes',
     description: 'Traverse varying musical terrain with consistent intonation.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🏜️',
   },
   {
@@ -261,7 +261,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Smooth transitions',
     description: 'Create silky-smooth legato connections between notes.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🎀',
   },
   {
@@ -270,7 +270,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Play through uncertainty',
     description: 'Maintain accuracy when visual feedback fades away.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🌫️',
   },
   {
@@ -279,7 +279,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Full range mastery',
     description: 'Achieve consistent quality across your entire range.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🌈',
   },
   {
@@ -288,7 +288,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Cross the break',
     description: 'Master register transitions and break points.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🌉',
   },
   {
@@ -297,7 +297,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Circular patterns',
     description: 'Maintain pitch while cycling through circular note sequences.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🪐',
   },
   {
@@ -306,7 +306,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Follow the ghost',
     description: 'Shadow a reference performance and match every nuance.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '👤',
   },
   {
@@ -315,7 +315,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Decode the pattern',
     description: 'Figure out the hidden pitch pattern and reproduce it.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🔐',
   },
   {
@@ -324,7 +324,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Race against time',
     description: 'Achieve target accuracy before the clock runs out.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '⏱️',
   },
   {
@@ -333,7 +333,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Connect everything',
     description: 'Link multiple skills together in compound challenges.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🔗',
   },
   {
@@ -342,7 +342,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Guide yourself home',
     description: 'Return to center pitch from increasingly wild deviations.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🗼',
   },
   {
@@ -351,7 +351,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Smooth portamento',
     description: 'Control pitch glides with precision between target notes.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🪂',
   },
   {
@@ -360,7 +360,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Build the picture',
     description: 'Piece together a complete intonation picture from fragments.',
     tier: 'advanced',
-    status: 'beta',
+    status: 'experimental',
     icon: '🧩',
   },
 
@@ -371,7 +371,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Beat your best',
     description: 'Zero-sum competition against your personal best — dominant strategy training.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '⚔️',
   },
   {
@@ -380,7 +380,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Bid on improvement',
     description: 'Allocate practice tokens to notes by priority — mechanism design for practice time.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '💰',
   },
   {
@@ -389,7 +389,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Coalition training',
     description: 'Group registers into cooperative alliances — improve them together.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '🤝',
   },
   {
@@ -398,7 +398,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'AI competition',
     description: 'Compete against an AI opponent calibrated to your skill level.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '🤖',
   },
   {
@@ -407,7 +407,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Optimal allocation',
     description: 'Find the Pareto-optimal balance for distributing practice time.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '📈',
   },
   {
@@ -416,7 +416,7 @@ export const EXERCISES: Exercise[] = [
     tagline: 'Negotiate balance',
     description: 'Nash bargaining for register balance — find the equilibrium.',
     tier: 'game-theory',
-    status: 'beta',
+    status: 'aspiring',
     icon: '📜',
   },
 ]

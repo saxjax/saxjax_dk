@@ -172,6 +172,12 @@ export class TunerPageComponent {
     switch (status) {
       case 'released':
         return ''
+      case 'verified':
+        return 'VERIFIED'
+      case 'experimental':
+        return 'EXPERIMENTAL'
+      case 'aspiring':
+        return 'ASPIRING'
       case 'beta':
         return 'BETA'
       case 'coming-soon':
