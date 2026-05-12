@@ -17,6 +17,22 @@ export function app(): express.Express {
   server.set('view engine', 'html')
   server.set('views', browserDistFolder)
 
+  // Serve static files for the embedded Spotify Musician Tool
+  const musicianStaticFolder = resolve(serverDistFolder, 'src', 'static', 'musician_practice_tool')
+
+  server.use(
+    '/musician_practice_tool',
+    express.static(musicianStaticFolder, {
+      maxAge: '1d',
+      index: 'index.html',
+    })
+  )
+
+  // SPA fallback: serve the musician app index for nested routes
+  server.get('/musician_practice_tool/*', (req, res) => {
+    res.sendFile(join(musicianStaticFolder, 'index.html'))
+  })
+
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
